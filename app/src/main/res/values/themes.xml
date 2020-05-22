@@ -1,10 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!-- Base application theme. -->
-    <style name="Theme.EducatorApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.EducatorApp" parent="Theme.MaterialComponents.Light.NoActionBar">
+
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/purple500</item>
-        <item name="colorPrimaryDark">@color/purple700</item>
-        <item name="colorAccent">@color/teal200</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:fontFamily">@font/calibri</item>
+
+        <!-- Material Dialog Customizations -->
+        <item name="material_dialog_background">@color/windowBackground</item>
+        <item name="material_dialog_message_text_color">@color/textColor</item>
+        <item name="material_dialog_title_text_color">@color/textColor</item>
+        <item name="material_dialog_positive_button_color">@color/colorPrimaryDark</item>
+        <item name="material_dialog_positive_button_text_color">@color/white</item>
+        <item name="material_dialog_negative_button_text_color">@color/colorPrimaryDark</item>
+
+        <!-- Background -->
+        <item name="colorSurface">@color/colorSurface</item>
+
+        <!-- Title -->
+        <item name="colorOnPrimarySurface">@color/colorOnPrimarySurface</item>
+
+        <!-- Text -->
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+
+        <!-- Border -->
+        <item name="colorOnSecondary">@color/colorBorder</item>
+        <item name="colorControlNormal">@color/colorControlNormal</item>
+        <item name="colorControlHighlight">@color/colorControlHighlight</item>
+        <item name="colorControlActivated">@color/colorControlActivated</item>
+
+        <!-- * * * * * * STYLES * * * * * * -->
+        <!-- BOTTOM NAVIGATION -->
+        <item name="bottomNavigationStyle">@style/BottomMenuStyle</item>
+
+
+    </style>
+
+    <!-- The splash theme to set the background with your splash screen drawable -->
+    <style name="AppTheme.Splash" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 
 </resources>

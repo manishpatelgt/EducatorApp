@@ -1,7 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple200">#BB86FC</color>
-    <color name="purple500">#6200EE</color>
-    <color name="purple700">#3700B3</color>
-    <color name="teal200">#03DAC5</color>
+    <!-- * * * * * * * * * * * BASE COLOR * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+    <color name="colorPrimary">#0061BF</color>
+    <color name="colorPrimaryDark">#014384</color>
+    <color name="colorOnPrimary">@android:color/white</color>
+
+    <color name="colorSurface">@android:color/white</color>
+
+    <!-- Title -->
+    <color name="colorOnPrimarySurface">#1A2025</color>
+
+    <!-- Text -->
+    <color name="colorOnSurface">#6A6D71</color>
+
+    <!-- * * * * * * * * * * * CUSTOM COLOR * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+    <!-- Page indicator -->
+    <color name="colorPageIndicatorBackground">#E2E2E2</color>
+    <color name="colorPageIndicatorActive">#1A2025</color>
+
+    <!-- Header list item -->
+    <color name="colorHeaderBackground">#E2E2E2</color>
+    <color name="colorHeaderTitle">#5F6368</color>
+
+    <!-- Border -->
+    <color name="colorBorder">#E2E2E2</color>
+    <color name="colorControlNormal">#9E9E9E</color>
+    <color name="colorControlHighlight">#3C4043</color>
+    <color name="colorControlActivated">#5F6368</color>
+    <color name="colorTransparent">#34000000</color>
+
+    <!-- * * * * * * * * * * * BUTTON * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+    <color name="colorButton">#699E3F</color>
+    <color name="colorButtonActive">#265F27</color>
+
+    <color name="list_divider">#f4f3f5</color>
+    <color name="antiquewhite">#FAEBD7</color>
+    <color name="antiquewhite1">#FFEFDB</color>
+    <color name="antiquewhite3">#CDC0B0</color>
+    <color name="antiquewhite4">#8B8378</color>
+    <color name="search_background">#fcfdfd</color>
+    <color name="notifications_background">#6679d8</color>
+
+    <color name="windowBackground">#F3F3F3</color>
+    <color name="colorAccent">#00838F</color>
+    <color name="statusBarColor">@android:color/white</color>
+    <color name="statusBarColorFade">#0DFFFFFF</color>
+
+    <color name="textColor">@android:color/black</color>
+    <color name="redcolor">#D0021B</color>
+    <color name="transparent">#00000000</color>
+    <color name="light_gray">#AA808080</color>
+    <color name="buttongreencolor2">#0FD19F</color>
+    <color name="gray82">#D1D1D1</color>
+    <color name="textcolor3">#4a4a4a</color>
+    <color name="textcolor4">#4a90e2</color>
+    <color name="textcolor5">#9b9b9b</color>
+    <color name="textcolor6">#33333d</color>
+    <color name="textcolor7">#373f42</color>
+    <color name="textcolor8">#2a3033</color>
+    <color name="textcolor9">#7b8a9d</color>
+    <color name="circle_background">#008780</color>
+    <color name="circle_background2">#3E837E</color>
+    <color name="circle_background3">#63CEA2</color>
+    <color name="separator_color">#BDBBC5</color>
+    <color name="color_text">#162242</color>
+    <color name="color_text_2">#768495</color>
+    <color name="color_text_3">#d2d9fe</color>
+    <color name="color_text_4">#152d4a</color>
+    <color name="color_text_5">#d2d9fe</color>
+    <color name="color_text_6">#162242</color>
+    <color name="color_text_7">#43617b</color>
+    <color name="color_text_8">#768495</color>
+    <color name="edittexthintcolor2">#858a8d</color>
+    <color name="screenBackground">#F1F3F2</color>
+    <color name="buttonNormal">#E2E8E6</color>
+    <color name="buttonSelected">#0FD19F</color>
+    <color name="white">#ffffff</color>
+
+    <color name="floralwhite">#fffaf0</color>
+    <color name="forestgreen">#228B22</color>
+    <color name="fuchsia">#FF00FF</color>
+    <color name="chocolate">#D2691E</color>
+    <color name="chocolate1">#FF7F24</color>
+    <color name="chocolate2">#EE7621</color>
+    <color name="chocolate3">#CD661D</color>
+
+    <color name="firebrick">#B22222</color>
+    <color name="firebrick1">#FF3030</color>
+    <color name="firebrick2">#EE2C2C</color>
+    <color name="firebrick3">#CD2626</color>
+    <color name="firebrick4">#8B1A1A</color>
+    <color name="flesh">#FF7D40</color>
+
+    <color name="skybluemedium3">#37567E</color>
+    <color name="slateblue">#6A5ACD</color>
+    <color name="slateblue1">#836FFF</color>
+    <color name="slateblue2">#7A67EE</color>
+    <color name="slateblue3">#6959CD</color>
+    <color name="slateblue4">#473C8B</color>
+    <color name="slateblue5">#473C8B</color>
 </resources>

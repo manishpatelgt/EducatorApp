@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_subject">
+
+    <fragment
+        android:id="@+id/navigation_subject"
+        android:name="com.educatorapp.ui.fragments.subject.SubjectFragment"
+        android:label="@string/title_menu_subjects"
+        tools:layout="@layout/fragment_subject">
+
+        <!-- Action to Educator List screen -->
+        <action
+            android:id="@+id/action_to_educator_list_screen"
+            app:destination="@id/active_educator_list_screen"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"></action>
+
+    </fragment>
+
+    <!-- Educator List screen -->
+    <fragment
+        android:id="@+id/active_educator_list_screen"
+        android:name="com.educatorapp.ui.fragments.educators.EducatorsFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_educators">
+        <argument
+            android:name="title"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="subject"
+            android:defaultValue="@null"
+            app:argType="com.educatorapp.model.Subject"
+            app:nullable="true" />
+
+        <!-- Action to Educator Video List screen -->
+        <action
+            android:id="@+id/active_educator_video_list_screen"
+            app:destination="@id/active_educator_video_list_screen"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"></action>
+
+    </fragment>
+
+    <!-- Educator Video List screen -->
+    <fragment
+        android:id="@+id/active_educator_video_list_screen"
+        android:name="com.educatorapp.ui.fragments.educatorvideo.EducatorVideoFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_educator_videos">
+        <argument
+            android:name="title"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="educator"
+            android:defaultValue="@null"
+            app:argType="com.educatorapp.model.Educator"
+            app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_favorite"
+        android:name="com.educatorapp.ui.fragments.favorites.FavoriteFragment"
+        android:label="@string/title_menu_favorite"
+        tools:layout="@layout/fragment_favorite" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.educatorapp.ui.fragments.profile.ProfileFragment"
+        android:label="@string/title_menu_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>

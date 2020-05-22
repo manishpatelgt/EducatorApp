@@ -1,0 +1,137 @@
+ext {
+
+    def kotlin_version = '1.3.71'
+    def kotlin_ktx_version = '1.3.0-alpha02'
+
+    def multidex_version = '2.0.1'
+    def material_version = '1.2.0-alpha06'
+    def appcompat_version = '1.1.0'
+    def constraint_layout_version = '2.0.0-alpha1'
+    def fragment_version = '1.2.1'
+
+    def navigation_fragment_version = '2.2.1'
+    def navigation_ui_version = '2.2.1'
+    def navigation_fragment_ktx_version = '2.2.1'
+    def navigation_ui_ktx_version = '2.2.1'
+
+    def firebase_analytics_version = '17.3.0'
+    def fiebase_crashlytics_version = '17.0.0-beta04'
+    def firestore_version = '21.4.2'
+    def firebase_database_version = '19.2.1'
+    def firebase_auth_version = '19.3.0'
+    def firebase_storage_version = '19.1.1'
+
+    def google_play_version = '18.0.0'
+
+    def coroutines_core_version = '1.3.5'
+    def coroutines_android_version = '1.3.5'
+
+    def room_version = "2.2.5"
+    def lifecycle_version = '2.2.0-alpha05'
+    def klaxon_parser_version = '5.0.1'
+
+    def facebook_stetho_version = '1.5.1'
+    def timber_version = '4.7.1'
+    def quick_permission_version = '0.4.0'
+
+    def exoplayer_version = '2.11.4'
+
+    def koin_version = '2.1.5'
+
+    def circle_image_view = '3.1.0'
+    def toasty_version = '1.4.2'
+    def glide_version = '4.9.0'
+    def material_dialog_version = '2.1'
+
+    kotlinDependencies = [
+            stdlin : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version",
+            reflect: "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version",
+            ktx    : "androidx.core:core-ktx:$kotlin_ktx_version"
+    ]
+
+    androidXDependencies = [
+            multidex        : "androidx.multidex:multidex:$multidex_version",
+            appcompat       : "androidx.appcompat:appcompat:$appcompat_version",
+            material        : "com.google.android.material:material:$material_version",
+            fragments       : "androidx.fragment:fragment-ktx:$fragment_version",
+            constraintlayout: "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+    ]
+
+    googlePlayDependencies = [
+            google_play: "com.google.android.gms:play-services-auth:$google_play_version"
+    ]
+
+    firebaseDependencies = [
+            analytics  : "com.google.firebase:firebase-analytics:$firebase_analytics_version",
+            crashlytics: "com.google.firebase:firebase-crashlytics:$fiebase_crashlytics_version",
+            firestore  : "com.google.firebase:firebase-firestore-ktx:$firestore_version",
+            database   : "com.google.firebase:firebase-database-ktx:$firebase_database_version",
+            auth       : "com.google.firebase:firebase-auth:$firebase_auth_version"
+            //storage    : "com.google.firebase:firebase-storage-ktx:$firebase_storage_version",
+
+    ]
+
+    logDependencies = [
+            timber: "com.jakewharton.timber:timber:$timber_version"
+    ]
+
+    jetpackDependencies = [
+
+            room                   : "androidx.room:room-runtime:$room_version",
+            room_ktx               : "androidx.room:room-ktx:$room_version",
+
+            lifecycle              : "androidx.lifecycle:lifecycle-extensions:$lifecycle_version",
+
+            // ViewModel
+            lifecycle_ktx          : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
+
+            // LiveData
+            lifecycle_ktx_2        : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version",
+
+            // Lifecycles only (without ViewModel or LiveData)
+            lifecycle_ktx_3        : "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version",
+
+            // Saved state module for ViewModel
+            lifecycle_ktx_3        : "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version",
+
+            navigation_fragment    : "androidx.navigation:navigation-fragment:$navigation_fragment_version",
+            navigation_ui          : "androidx.navigation:navigation-ui:$navigation_ui_version",
+            navigation_fragment_ktx: "androidx.navigation:navigation-fragment-ktx:$navigation_fragment_ktx_version",
+            navigation_ui_ktx      : "androidx.navigation:navigation-ui-ktx:$navigation_ui_ktx_version"
+    ]
+
+    coroutinesDependencies = [
+            core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_core_version",
+            android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_android_version"
+    ]
+
+    exoPlayerDependencies = [
+            core: "com.google.android.exoplayer:exoplayer-core:$exoplayer_version",
+            dash: "com.google.android.exoplayer:exoplayer-dash:$exoplayer_version",
+            ui  : "com.google.android.exoplayer:exoplayer-ui:$exoplayer_version"
+    ]
+
+    koinDependencies = [
+            android    : "org.koin:koin-android:$koin_version",
+            scope      : "org.koin:koin-android-scope:$koin_version",
+            viewmodel  : "org.koin:koin-android-viewmodel:$koin_version",
+            android_ext: "org.koin:koin-android-ext:$koin_version"
+    ]
+
+    parserDependencies = [
+            klaxon: "com.beust:klaxon:$klaxon_parser_version"
+    ]
+
+    debugDependencies = [
+            stetho: "com.facebook.stetho:stetho:$facebook_stetho_version"
+    ]
+
+    otherDependencies = [
+            toasty         : "com.github.GrenderG:Toasty:$toasty_version",
+            permission     : "com.github.quickpermissions:quickpermissions-kotlin:$quick_permission_version",
+            glide          : "com.github.bumptech.glide:glide:$glide_version",
+            material_dialog: "com.shreyaspatil:MaterialDialog:$material_dialog_version",
+            circle_img     : "de.hdodenhof:circleimageview:$circle_image_view"
+    ]
+
+}

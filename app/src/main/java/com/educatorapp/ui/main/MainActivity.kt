@@ -1,0 +1,76 @@
+package com.educatorapp.ui.main
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
+import com.educatorapp.R
+import com.educatorapp.application.App
+import com.educatorapp.databinding.ActivityMainBinding
+import com.educatorapp.ui.base.BaseActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import es.dmoral.toasty.Toasty
+
+/**
+ * Created by Manish Patel on 5/21/2020.
+ */
+class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
+
+    override fun getViewBinding(): ActivityMainBinding =
+        ActivityMainBinding.inflate(layoutInflater)
+
+    override val mViewModel: MainViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(mViewBinding.root)
+        setupUI()
+    }
+
+    private fun setupUI() {
+
+        /** Set action bar */
+        setSupportActionBar(mViewBinding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        /** Set observers*/
+        setObservers()
+
+        val navView: BottomNavigationView = findViewById(R.id.nav_view)
+        val navController = findNavController(R.id.nav_host_fragment)
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.navigation_subject,
+                R.id.navigation_favorite,
+                R.id.navigation_profile
+            )
+        )
+
+        navView.setupWithNavController(navController)
+        mViewBinding.toolbar?.setupWithNavController(navController, appBarConfiguration)
+    }
+
+    private fun setObservers() {
+
+        /** Set observer for a toast message */
+        mViewModel.showToast.observe(this, Observer {
+            showToastMessage(it)
+        })
+    }
+
+
+    /** Show toast message */
+    fun showToastMessage(toastMessage: String) {
+        Toasty.info(this, toastMessage, Toast.LENGTH_LONG, false).show()
+    }
+
+    companion object {
+        fun getIntent() = Intent(App.appContext, MainActivity::class.java)
+    }
+}

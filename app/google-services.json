@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "893303732413",
+    "firebase_url": "https://educator-app-38a63.firebaseio.com",
+    "project_id": "educator-app-38a63",
+    "storage_bucket": "educator-app-38a63.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:893303732413:android:57815d2b89caf813f79fd4",
+        "android_client_info": {
+          "package_name": "com.educatorapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "893303732413-r0n3vncbocf36dh2l6par2uomm260q4r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.educatorapp",
+            "certificate_hash": "1742ee6c5cca3dd9706d9bfc4fbe5f7794a1337a"
+          }
+        },
+        {
+          "client_id": "893303732413-9md9ei9qkg8llkt9uedr0ha3s17f47gk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYjuWSNVAbP0Yhu_3godx8HFgtvrspbFk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "893303732413-9md9ei9qkg8llkt9uedr0ha3s17f47gk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

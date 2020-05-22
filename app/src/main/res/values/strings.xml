@@ -1,3 +1,63 @@
 <resources>
     <string name="app_name">EducatorApp</string>
+
+    <string name="title_menu_subjects">Subjects</string>
+    <string name="title_menu_educators">Educators</string>
+    <string name="title_menu_home">Home</string>
+    <string name="title_menu_favorite">Favorite Video</string>
+    <string name="title_menu_support">App Support</string>
+    <string name="title_logout">Logout</string>
+    <string name="title_menu_profile">Profile</string>
+
+    <string name="title_login">Login</string>
+    <string name="title_test">Firebase Test</string>
+
+    <string name="api_call_retry_message">Something went wrong</string>
+    <string name="api_call_retry_message_2">Please try again later</string>
+    <string name="no_data_found_message">Seems like no video found</string>
+    <string name="no_data_found_message_2">Seems like no educators found</string>
+    <string name="favorite_video_list_empty_message">Seems like your favorite video list is empty</string>
+    <string name="retry">RETRY</string>
+
+    <string name="text_subject_image">Subject Image</string>
+    <string name="text_educator_image">Educator Image</string>
+    <string name="text_educator_video_image">Educator Video Logo</string>
+
+    <string name="no_internet_connection">You are not connected to the Internet</string>
+    <string name="no_internet_connection_mobile_out_of_credit">You are not connected to the Internet. It is likely that
+        you have run out of the credit on your device.
+    </string>
+    <string name="no_internet_connection_restart_app">Please connect to a WiFi or mobile data network and then restart
+        the application.
+    </string>
+
+    <string name="title_video_play">Video Player</string>
+
+    <string name="txt_label_your_name">Your Name</string>
+    <string name="txt_label_nick_name">Nickname</string>
+    <string name="txt_label_email">Email Address</string>
+
+    <string name="menu_logout">Logout</string>
+
+    <string name="fud">Functionality Under Development</string>
+
+    <string name="cd_background">Background image</string>
+    <string name="cd_avatar">Profile picture</string>
+    <string name="cd_loader">Loading icon</string>
+
+    <string name="login_screen_info">By clicking Login, you agree to the Terms &amp; Conditions and Privacy Policy of EducatorApp</string>
+    <string name="welcome_info">Welcome to EducatorApp</string>
+
+    <string name="support_email">support@gmail.com</string>
+    <string name="support_call">1234567891</string>
+
+    <string name="permission_title2">Permissions necessary</string>
+    <string name="permission_message2">You have forcefully denied some of the required permissions for this app.\nPlease
+        open settings, go to permissions and allow them.
+    </string>
+    <string name="go_to_settings">Open Settings</string>
+
+    <string name="reach_us">Reach Us</string>
+
+    <string name="rating_text">%s /5.0</string>
 </resources>
