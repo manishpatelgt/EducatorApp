@@ -18,7 +18,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/transparent"
-            android:fontFamily="@font/calibri"
             android:textAlignment="center"
             android:padding="10dp"
             android:text="@string/api_call_retry_message"
@@ -32,7 +31,6 @@
             android:id="@+id/txt_message_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/calibri"
             android:padding="5dp"
             android:textAlignment="center"
             android:text="@string/api_call_retry_message_2"
@@ -43,16 +41,14 @@
             app:layout_constraintTop_toBottomOf="@+id/txt_message_1" />
 
         <!-- Retry Button -->
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/retry_button"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:fontFamily="@font/calibri"
             android:text="@string/retry"
             android:textColor="@color/white"
             android:textSize="@dimen/dimen_15sp"
-            android:textStyle="bold"
             android:visibility="gone"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

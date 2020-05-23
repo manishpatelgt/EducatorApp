@@ -2,11 +2,13 @@ package com.educatorapp.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.educatorapp.R
 import com.educatorapp.application.App
@@ -52,12 +54,28 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             )
         )
 
+        //NavigationUI.setupWithNavController(mViewBinding.toolbar, navController)
         navView.setupWithNavController(navController)
         mViewBinding.toolbar?.setupWithNavController(navController, appBarConfiguration)
+        /*mViewBinding.navView.setOnNavigationItemReselectedListener {
+            "Reselect blocked."
+        }*/
+
+        /*mViewBinding.toolbar.setNavigationOnClickListener {
+            when (navController.currentDestination?.id) {
+                R.id.navigation_subject, R.id.navigation_favorite, R.id.navigation_profile -> {
+                    Log.e("Main", "current destination id: ${navController.currentDestination?.id} ")
+                    if (onBackPressedDispatcher.hasEnabledCallbacks())
+                        onBackPressedDispatcher.onBackPressed()
+                    else
+                        navController.navigateUp()
+                }
+                else -> navController.navigateUp()
+            }
+        }*/
     }
 
     private fun setObservers() {
-
         /** Set observer for a toast message */
         mViewModel.showToast.observe(this, Observer {
             showToastMessage(it)

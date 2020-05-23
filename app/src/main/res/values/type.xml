@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- * * * * * * * * * * * TEXT APPEARANCE * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
+
+    <!-- HEADLINE - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <style name="TextAppearance.Educator.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="fontFamily">@font/calibri</item>
+    </style>
+
+    <style name="TextAppearance.Educator.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textSize">@dimen/dimen_26sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="ActiveText">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="InactiveText">
+        <item name="android:textColor">@color/colorOnSurface</item>
+    </style>
+
+    <!-- Bottom Menu text style (active) - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - -->
+    <style name="BottomMenuActiveTextStyle" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">@dimen/dimen_12sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <!-- Bottom Menu text style (active) - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - -->
+    <style name="BottomMenuInActiveTextStyle" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">@dimen/dimen_12sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <!-- Toolbar Title style - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <style name="ToolbarTitleStyle" parent="TextAppearance.Educator.Headline5">
+        <item name="android:textSize">@dimen/dimen_18sp</item>
+        <item name="android:letterSpacing">0.1</item>
+        <item name="fontFamily">@font/calibri</item>
+    </style>
+
+    <!-- Toolbar Sub Title style - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <style name="ToolbarSubTitleStyle" parent="ToolbarTitleStyle">
+        <item name="android:textSize">@dimen/dimen_16sp</item>
+    </style>
+
+    <!-- EditText Hint style -->
+    <style name="hintTextStyle" parent="android:TextAppearance">
+        <item name="hintTextColor">@color/color_text_8</item>
+        <item name="android:fontFamily">@font/calibri</item>
+        <item name="android:textColorHint">@color/color_text_8</item>
+        <item name="android:textSize">@dimen/dimen_14sp</item>
+    </style>
+
+    <!-- EditText Text style -->
+    <style name="editTextStyle" parent="android:TextAppearance">
+        <item name="android:fontFamily">@font/calibri</item>
+        <item name="android:textColor">@color/color_text</item>
+        <item name="android:textSize">@dimen/dimen_18sp</item>
+    </style>
+
+    <style name="GenericTextStyle" parent="android:TextAppearance">
+        <item name="android:fontFamily">@font/calibri</item>
+        <item name="android:textColor">@color/color_text_4</item>
+        <item name="android:textSize">@dimen/dimen_22sp</item>
+    </style>
+
+    <style name="GenericTextStyle.Grey" parent="android:TextAppearance">
+        <item name="android:fontFamily">@font/calibri</item>
+        <item name="android:textColor">@color/textcolor9</item>
+        <item name="android:textSize">@dimen/dimen_22sp</item>
+    </style>
+</resources>

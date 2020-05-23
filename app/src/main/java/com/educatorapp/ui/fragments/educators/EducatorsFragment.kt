@@ -14,8 +14,11 @@ import com.educatorapp.databinding.FragmentEducatorsBinding
 import com.educatorapp.model.Subject
 import com.educatorapp.ui.adapter.EducatorListAdapter
 import com.educatorapp.ui.base.BaseFragment
+import com.educatorapp.ui.fragments.subject.SubjectFragmentDirections
 import com.educatorapp.utils.constants.Constants
 import com.educatorapp.utils.enums.State
+import com.educatorapp.utils.extensions.gone
+import com.educatorapp.utils.extensions.visible
 import com.educatorapp.utils.network.isNetworkAvailable
 
 class EducatorsFragment :
@@ -27,11 +30,9 @@ class EducatorsFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var selectedSubject = arguments?.getParcelable<Subject>("subject")
-        if (isNetworkAvailable()) {
-            mViewModel.getEducators(selectedSubject?.Id)
-        } else {
-            loadFragment(App.appContext.getString(R.string.no_internet_connection), "")
-        }
+
+        /** get Eduactor list based on selected subject **/
+        mViewModel.getEducators(selectedSubject?.Id)
 
         /** Set observers*/
         setObservers()
@@ -39,6 +40,11 @@ class EducatorsFragment :
         mAdapter = EducatorListAdapter(EducatorListAdapter.OnClickListener {
             /** Move to Educator Video list Fragment **/
             val title = " ${Constants.EDUCATORS} (${it.name})"
+            /*navigateWithAction(
+                EducatorsFragmentDirections.activeEducatorVideoListScreen(
+                    title, it
+                )
+            )*/
             val bundle = bundleOf("title" to title, "educator" to it)
             findNavController().navigate(R.id.active_educator_video_list_screen, bundle)
         })
@@ -55,14 +61,23 @@ class EducatorsFragment :
         /** Set observer for a Status */
         mViewModel.status.observe(viewLifecycleOwner, Observer {
             when (it) {
+                State.LOADING -> mViewBinding.progress.visible()
                 State.ERROR -> {
                     loadFragment(
                         App.appContext.getString(R.string.api_call_retry_message),
                         App.appContext.getString(R.string.api_call_retry_message_2)
                     )
                 }
+                State.NOINTERNET -> {
+                    mViewBinding.progress.gone()
+                    loadFragment(appContext.getString(R.string.no_internet_connection), "")
+                }
                 State.NODATA -> {
+                    mViewBinding.progress.gone()
                     loadFragment(appContext.getString(R.string.no_data_found_message_2), "")
+                }
+                State.DONE -> {
+                    mViewBinding.progress.gone()
                 }
             }
         })

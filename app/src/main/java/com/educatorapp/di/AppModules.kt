@@ -36,9 +36,9 @@ val viewModelModule = module {
         FavoriteViewModel(get())
     }
 
-    viewModel {
+    /*viewModel {
         ProfileViewModel(get())
-    }
+    }*/
 }
 
 /** KOIN APP MODULES * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */

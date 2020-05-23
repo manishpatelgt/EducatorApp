@@ -16,36 +16,12 @@
     <style name="CustomExoMediaButton.Pause">
         <item name="android:src">@drawable/ic_pause_circle_filled</item>
     </style>
-
-    <style name="SubjectText">
-        <item name="android:layout_marginStart">@dimen/dimen_10dp</item>
-    </style>
-
-    <style name="EducatorText">
-        <item name="android:layout_margin">@dimen/dimen_10dp</item>
-        <item name="android:padding">@dimen/dimen_5dp</item>
-    </style>
-
-    <style name="SubjectImage">
-        <item name="android:scaleType">centerCrop</item>
-    </style>
-
+    
     <style name="RatingBar" parent="android:style/Widget.Material.RatingBar.Small">
         <item name="colorControlNormal">@color/colorPrimary</item>
         <item name="colorControlActivated">@color/colorPrimaryDark</item>
     </style>
 
-    <!-- * * * * * * * * * * * TEXT APPEARANCE * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  -->
-
-    <!-- HEADLINE - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <style name="TextAppearance.Headline" parent="TextAppearance.MaterialComponents.Headline5">
-        <item name="android:textSize">@dimen/dimen_26sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:ellipsize">end</item>
-    </style>
-
-    <!-- * * * * * * * * * * * MENU * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
     <!-- Bottom Menu style - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - -->
     <style name="BottomMenuStyle" parent="Widget.MaterialComponents.BottomNavigationView">
@@ -55,35 +31,8 @@
         <item name="itemTextAppearanceInactive">@style/InactiveText</item>
     </style>
 
-    <style name="ActiveText">
-        <item name="android:textColor">@color/colorPrimaryDark</item>
-    </style>
-
-    <style name="InactiveText">
-        <item name="android:textColor">@color/colorOnSurface</item>
-    </style>
-
-    <!-- Bottom Menu text style (active) - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - -->
-    <style name="BottomMenuActiveTextStyle" parent="TextAppearance.MaterialComponents.Body1">
-        <item name="android:textSize">@dimen/dimen_12sp</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textAlignment">center</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:ellipsize">end</item>
-        <item name="android:textColor">@color/colorPrimaryDark</item>
-    </style>
-
-    <!-- Bottom Menu text style (active) - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - -->
-    <style name="BottomMenuInActiveTextStyle" parent="TextAppearance.MaterialComponents.Body1">
-        <item name="android:textSize">@dimen/dimen_12sp</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textAlignment">center</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:ellipsize">end</item>
-    </style>
 
     <!-- * * * * * * * * * * * TOOLBAR * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
     <!-- Toolbar style - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
     <style name="ToolbarStyle" parent="ThemeOverlay.MaterialComponents.ActionBar">
         <item name="android:textColorPrimary">?attr/colorOnPrimary</item>
@@ -103,18 +52,6 @@
         <item name="android:background">@color/colorPrimaryDark</item>
     </style>
 
-    <!-- Toolbar Title style - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <style name="ToolbarTitleStyle" parent="TextAppearance.Headline">
-        <item name="android:textSize">@dimen/dimen_18sp</item>
-        <item name="android:letterSpacing">0.1</item>
-        <item name="fontFamily">@font/calibri</item>
-    </style>
-
-    <!-- Toolbar Sub Title style - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <style name="ToolbarSubTitleStyle" parent="ToolbarTitleStyle">
-        <item name="android:textSize">@dimen/dimen_16sp</item>
-    </style>
-
     <!-- Popup Menu style - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
     <style name="ToolbarPopupMenuStyle" parent="Widget.AppCompat.Light.PopupMenu">
         <item name="android:textColor">?attr/colorOnSurface</item>
@@ -122,27 +59,6 @@
         <item name="android:letterSpacing">0.1</item>
         <item name="fontFamily">@font/calibri</item>
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
-    </style>
-
-    <!-- Side Menu text style (active) - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - -->
-    <style name="SideMenuTextStyle" parent="BottomMenuActiveTextStyle">
-        <item name="android:textSize">@dimen/dimen_15sp</item>
-        <item name="android:textAlignment">textStart</item>
-    </style>
-
-    <!-- EditText Hint style -->
-    <style name="hintTextStyle" parent="android:TextAppearance">
-        <item name="hintTextColor">@color/color_text_8</item>
-        <item name="android:fontFamily">@font/calibri</item>
-        <item name="android:textColorHint">@color/color_text_8</item>
-        <item name="android:textSize">@dimen/dimen_14sp</item>
-    </style>
-
-    <!-- EditText Text style -->
-    <style name="editTextStyle" parent="android:TextAppearance">
-        <item name="android:fontFamily">@font/calibri</item>
-        <item name="android:textColor">@color/color_text</item>
-        <item name="android:textSize">@dimen/dimen_18sp</item>
     </style>
 
     <style name="DataEntrySubjectTextStyle">

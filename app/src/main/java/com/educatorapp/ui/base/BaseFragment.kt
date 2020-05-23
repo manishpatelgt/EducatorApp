@@ -2,23 +2,31 @@ package com.educatorapp.ui.base
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import com.educatorapp.R
 import com.educatorapp.fragments.NoDataFoundFragment
 import com.educatorapp.fragments.dialogs.ProgressDialogFragment
 import com.educatorapp.utils.Utility
+import com.educatorapp.utils.extensions.popBackStackAllInstances
 import com.livinglifetechway.quickpermissions_kotlin.util.QuickPermissionsRequest
-import org.koin.android.viewmodel.compat.ScopeCompat.getViewModel
 
-abstract class BaseFragment<VM : ViewModel, T : ViewDataBinding>(@LayoutRes val layout: Int) : Fragment() {
+abstract class BaseFragment<VM : ViewModel, T : ViewDataBinding>(@LayoutRes val layout: Int) :
+    Fragment() {
+
+    var progressDialog: ProgressDialogFragment? = null
+    var isNavigated = false
 
     protected abstract val mViewModel: VM
     protected lateinit var mViewBinding: T
@@ -34,7 +42,32 @@ abstract class BaseFragment<VM : ViewModel, T : ViewDataBinding>(@LayoutRes val 
         return mViewBinding.root
     }
 
-    var progressDialog: ProgressDialogFragment? = null
+    fun navigateWithAction(action: NavDirections) {
+        isNavigated = true
+        findNavController().navigate(action)
+    }
+
+    fun navigate(resId: Int) {
+        isNavigated = true
+        findNavController().navigate(resId)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.e(TAG, "On onDestroyView()")
+        /*if (!isNavigated)
+            Log.e(TAG, "isNavigated: $isNavigated")
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            val navController = findNavController()
+            if (navController.currentBackStackEntry?.destination?.id != null) {
+                findNavController().popBackStackAllInstances(
+                    navController.currentBackStackEntry?.destination?.id!!,
+                    true
+                )
+            } else
+                navController.popBackStack()
+        }*/
+    }
 
     fun showFragment(message_1: String, message_2: String) {
         val noDataFoundFragment =
@@ -89,6 +122,7 @@ abstract class BaseFragment<VM : ViewModel, T : ViewDataBinding>(@LayoutRes val 
     }
 
     companion object {
+        val TAG = BaseFragment::class.java.simpleName
         val DIALOG_PROGRESS = "DialogProgress"
     }
 }

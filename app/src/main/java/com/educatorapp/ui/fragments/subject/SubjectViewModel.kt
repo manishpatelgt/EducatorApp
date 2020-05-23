@@ -11,6 +11,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.educatorapp.utils.enums.State
+import com.educatorapp.utils.network.isNetworkAvailable
 import timber.log.Timber
 
 class SubjectViewModel : ViewModel() {
@@ -30,12 +31,18 @@ class SubjectViewModel : ViewModel() {
         get() = _subjects
 
     fun getSubjects() {
+
         _status.value = State.LOADING
+
+        if (!isNetworkAvailable()) {
+            _status.value = State.NOINTERNET
+            return
+        }
+
         val databaseReference = mDatabase.child("Subjects").orderByChild("title")
         databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 _status.value = State.DONE
-                println("$dataSnapshot")
                 if (dataSnapshot.exists()) {
                     val mSubjects: MutableList<Subject> = mutableListOf()
                     for (snapshot in dataSnapshot.children) {

@@ -16,6 +16,7 @@
     <string name="api_call_retry_message_2">Please try again later</string>
     <string name="no_data_found_message">Seems like no video found</string>
     <string name="no_data_found_message_2">Seems like no educators found</string>
+    <string name="no_data_found_message_3">Seems like no subjects found</string>
     <string name="favorite_video_list_empty_message">Seems like your favorite video list is empty</string>
     <string name="retry">RETRY</string>
 

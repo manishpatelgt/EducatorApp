@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import com.educatorapp.data.preferences.PreferencesHelper
 import com.educatorapp.model.MobileUser
 
-class ProfileViewModel constructor(private val preferencesHelper: PreferencesHelper) : ViewModel() {
+class ProfileViewModel  : ViewModel() {
 
-    lateinit var mobileUser: MobileUser
+    /*lateinit var mobileUser: MobileUser
 
     init {
         preferencesHelper.mobileUser?.let {
@@ -23,6 +23,6 @@ class ProfileViewModel constructor(private val preferencesHelper: PreferencesHel
 
     fun logout() {
         preferencesHelper.reset()
-    }
+    }*/
 
 }

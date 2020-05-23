@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.educatorapp.model.Educator
 import com.educatorapp.model.Subject
 import com.educatorapp.utils.enums.State
+import com.educatorapp.utils.network.isNetworkAvailable
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -29,6 +30,11 @@ class EducatorsViewModel : ViewModel() {
     fun getEducators(subjectId: String?) {
         _status.value = State.LOADING
 
+        if (!isNetworkAvailable()) {
+            _status.value = State.NOINTERNET
+            return
+        }
+
         val query: Query = mDatabase
             .child("Educators")
             .orderByChild("subjectId")
@@ -36,6 +42,8 @@ class EducatorsViewModel : ViewModel() {
 
         query.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                _status.value = State.DONE
+
                 if (dataSnapshot.exists()) {
                     val mEducators: MutableList<Educator> = mutableListOf()
                     for (snapshot in dataSnapshot.children) {

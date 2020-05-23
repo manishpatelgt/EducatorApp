@@ -14,7 +14,7 @@
         app:cardElevation="5dp"
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="true"
-        app:contentPadding="10dp"
+        app:contentPadding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,12 +41,10 @@
             <!-- Subject title text -->
             <TextView
                 android:id="@+id/text_subject"
-                style="@style/SubjectText"
+                style="@style/GenericTextStyle.Grey"
+                android:layout_marginStart="@dimen/dimen_10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/calibri"
-                android:textColor="@color/textcolor9"
-                android:textSize="@dimen/dimen_24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/subject_icon"
                 app:layout_constraintTop_toTopOf="parent"

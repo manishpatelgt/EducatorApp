@@ -11,8 +11,8 @@ ext {
 
     def navigation_fragment_version = '2.2.1'
     def navigation_ui_version = '2.2.1'
-    def navigation_fragment_ktx_version = '2.2.1'
-    def navigation_ui_ktx_version = '2.2.1'
+    def navigation_fragment_ktx_version = '2.3.0-alpha05'
+    def navigation_ui_ktx_version = '2.3.0-alpha05'
 
     def firebase_analytics_version = '17.3.0'
     def fiebase_crashlytics_version = '17.0.0-beta04'
@@ -94,8 +94,8 @@ ext {
             // Saved state module for ViewModel
             lifecycle_ktx_3        : "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version",
 
-            navigation_fragment    : "androidx.navigation:navigation-fragment:$navigation_fragment_version",
-            navigation_ui          : "androidx.navigation:navigation-ui:$navigation_ui_version",
+            //navigation_fragment    : "androidx.navigation:navigation-fragment:$navigation_fragment_version",
+            //navigation_ui          : "androidx.navigation:navigation-ui:$navigation_ui_version",
             navigation_fragment_ktx: "androidx.navigation:navigation-fragment-ktx:$navigation_fragment_ktx_version",
             navigation_ui_ktx      : "androidx.navigation:navigation-ui-ktx:$navigation_ui_ktx_version"
     ]

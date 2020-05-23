@@ -16,7 +16,24 @@
         android:layout_height="match_parent"
         tools:context=".ui.profile.ProfileFragment">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <!-- Avatar -->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_profile"
+            android:layout_width="@dimen/dimen_100dp"
+            android:layout_height="@dimen/dimen_100dp"
+            android:layout_margin="@dimen/dimen_20dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/cd_avatar"
+            android:src="@drawable/ic_profile_placeholder"
+            app:civ_border_color="?attr/colorOnSecondary"
+            app:civ_border_width="@dimen/dimen_1dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_profile_placeholder"
+            app:srcCompat="@drawable/ic_profile_placeholder" />
+
+        <!--<androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/user_profile"
             android:layout_width="@dimen/dimen_100dp"
             android:layout_height="@dimen/dimen_100dp"
@@ -28,7 +45,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:imageLoad="@{viewModel.getProfileUrl()}"
             tools:src="@drawable/ic_profile_placeholder"
-            app:srcCompat="@drawable/ic_profile_placeholder" />
+            app:srcCompat="@drawable/ic_profile_placeholder" />-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_layout_1"
@@ -53,7 +70,6 @@
                     android:id="@+id/txt_your_name_label"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/calibri"
                     android:text="@string/txt_label_your_name"
                     android:textColor="@color/color_text_8"
                     android:textSize="@dimen/dimen_14sp"
@@ -64,10 +80,8 @@
                     android:id="@+id/txt_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/calibri"
                     android:textColor="@color/color_text"
                     android:textSize="@dimen/dimen_18sp"
-                    android:text="@{viewModel.setName()}"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txt_your_name_label"
                     tools:text="John Smith" />
@@ -106,7 +120,6 @@
                     android:id="@+id/txt_email_label"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/calibri"
                     android:text="@string/txt_label_email"
                     android:textColor="@color/color_text_8"
                     android:textSize="@dimen/dimen_14sp"
@@ -117,10 +130,8 @@
                     android:id="@+id/txt_email"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/calibri"
                     android:textColor="@color/color_text"
                     android:textSize="@dimen/dimen_18sp"
-                    android:text="@{viewModel.setEmail()}"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txt_email_label"
                     tools:text="john@domeinname.com" />

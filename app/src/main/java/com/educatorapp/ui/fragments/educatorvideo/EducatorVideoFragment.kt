@@ -17,6 +17,8 @@ import com.educatorapp.ui.adapter.EducatorVideoListAdapter
 import com.educatorapp.ui.base.BaseFragment
 import com.educatorapp.utils.constants.Constants
 import com.educatorapp.utils.enums.State
+import com.educatorapp.utils.extensions.gone
+import com.educatorapp.utils.extensions.visible
 import com.educatorapp.utils.network.isNetworkAvailable
 
 class EducatorVideoFragment :
@@ -30,14 +32,11 @@ class EducatorVideoFragment :
 
         var selectedEducator = arguments?.getParcelable<Educator>("educator")
 
-        if (isNetworkAvailable()) {
-            mViewModel.getVideos(
-                selectedEducator?.Id,
-                selectedEducator?.subjectId
-            )
-        } else {
-            loadFragment(App.appContext.getString(R.string.no_internet_connection), "")
-        }
+        /** get video list based on educator and subject **/
+        mViewModel.getVideos(
+            selectedEducator?.Id,
+            selectedEducator?.subjectId
+        )
 
         /** Set observers*/
         setObservers()
@@ -58,14 +57,23 @@ class EducatorVideoFragment :
         /** Set observer for a Status */
         mViewModel.status.observe(viewLifecycleOwner, Observer {
             when (it) {
+                State.LOADING -> mViewBinding.progress.visible()
                 State.ERROR -> {
                     loadFragment(
                         App.appContext.getString(R.string.api_call_retry_message),
                         App.appContext.getString(R.string.api_call_retry_message_2)
                     )
                 }
+                State.NOINTERNET -> {
+                    mViewBinding.progress.gone()
+                    loadFragment(appContext.getString(R.string.no_internet_connection), "")
+                }
                 State.NODATA -> {
+                    mViewBinding.progress.gone()
                     loadFragment(appContext.getString(R.string.no_data_found_message), "")
+                }
+                State.DONE -> {
+                    mViewBinding.progress.gone()
                 }
             }
         })
