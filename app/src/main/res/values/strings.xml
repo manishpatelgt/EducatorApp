@@ -39,6 +39,7 @@
     <string name="txt_label_email">Email Address</string>
 
     <string name="menu_logout">Logout</string>
+    <string name="menu_contact">Contact Us</string>
 
     <string name="fud">Functionality Under Development</string>
 

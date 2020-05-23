@@ -14,7 +14,7 @@
         <!-- Action to Educator List screen -->
         <action
             android:id="@+id/action_to_educator_list_screen"
-            app:destination="@id/active_educator_list_screen"
+            app:destination="@id/educator_list_screen"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -24,7 +24,7 @@
 
     <!-- Educator List screen -->
     <fragment
-        android:id="@+id/active_educator_list_screen"
+        android:id="@+id/educator_list_screen"
         android:name="com.educatorapp.ui.fragments.educators.EducatorsFragment"
         android:label="{title}"
         tools:layout="@layout/fragment_educators">
@@ -41,8 +41,8 @@
 
         <!-- Action to Educator Video List screen -->
         <action
-            android:id="@+id/active_educator_video_list_screen"
-            app:destination="@id/active_educator_video_list_screen"
+            android:id="@+id/action_educator_video_list_screen"
+            app:destination="@id/educator_video_list_screen"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -52,7 +52,7 @@
 
     <!-- Educator Video List screen -->
     <fragment
-        android:id="@+id/active_educator_video_list_screen"
+        android:id="@+id/educator_video_list_screen"
         android:name="com.educatorapp.ui.fragments.educatorvideo.EducatorVideoFragment"
         android:label="{title}"
         tools:layout="@layout/fragment_educator_videos">
@@ -78,5 +78,22 @@
         android:id="@+id/navigation_profile"
         android:name="com.educatorapp.ui.fragments.profile.ProfileFragment"
         android:label="@string/title_menu_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+
+        <!-- Action to Contact Us screen -->
+        <action
+            android:id="@+id/action_contact_us_screen"
+            app:destination="@id/contact_us_screen"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"></action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/contact_us_screen"
+        android:name="com.educatorapp.ui.fragments.contactus.ContactFragment"
+        android:label="@string/menu_contact"
+        tools:layout="@layout/fragment_contact" />
 </navigation>

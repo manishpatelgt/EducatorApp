@@ -1,5 +1,6 @@
 package com.educatorapp.ui.fragments.educators
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
@@ -20,6 +21,7 @@ import com.educatorapp.utils.enums.State
 import com.educatorapp.utils.extensions.gone
 import com.educatorapp.utils.extensions.visible
 import com.educatorapp.utils.network.isNetworkAvailable
+import org.koin.android.ext.android.inject
 
 class EducatorsFragment :
     BaseFragment<EducatorsViewModel, FragmentEducatorsBinding>(R.layout.fragment_educators) {
@@ -46,7 +48,7 @@ class EducatorsFragment :
                 )
             )*/
             val bundle = bundleOf("title" to title, "educator" to it)
-            findNavController().navigate(R.id.active_educator_video_list_screen, bundle)
+            findNavController().navigate(R.id.action_educator_video_list_screen, bundle)
         })
 
         mViewBinding.educatorsList.apply {
@@ -86,6 +88,6 @@ class EducatorsFragment :
         mViewModel.educators.observe(viewLifecycleOwner, Observer { entries ->
             mAdapter.setEducators(entries)
         })
-
     }
+
 }

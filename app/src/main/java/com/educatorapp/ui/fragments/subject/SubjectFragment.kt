@@ -1,5 +1,6 @@
 package com.educatorapp.ui.fragments.subject
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
@@ -16,7 +17,7 @@ import com.educatorapp.utils.constants.Constants
 import com.educatorapp.utils.enums.State.*
 import com.educatorapp.utils.extensions.gone
 import com.educatorapp.utils.extensions.visible
-import com.educatorapp.utils.network.isNetworkAvailable
+import org.koin.android.ext.android.inject
 
 class SubjectFragment :
     BaseFragment<SubjectViewModel, FragmentSubjectBinding>(R.layout.fragment_subject) {
@@ -86,4 +87,5 @@ class SubjectFragment :
             mAdapter.setSubjects(entries)
         })
     }
+
 }

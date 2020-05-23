@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.educatorapp.R
 import com.educatorapp.data.preferences.PreferencesHelper
 import com.educatorapp.databinding.FragmentProfileBinding
@@ -66,6 +67,9 @@ class ProfileFragment :
         when (item.itemId) {
             R.id.menu_logout -> {
                 confirmDialog()
+            }
+            R.id.menu_contact_us -> {
+                findNavController().navigate(R.id.action_contact_us_screen)
             }
         }
         return true

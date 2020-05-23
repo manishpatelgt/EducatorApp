@@ -2,6 +2,7 @@ package com.educatorapp.di
 
 import com.educatorapp.data.database.EducatorDatabase
 import com.educatorapp.data.preferences.PreferencesHelper
+import com.educatorapp.ui.fragments.contactus.ContactViewModel
 import com.educatorapp.ui.fragments.favorites.FavoriteViewModel
 import com.educatorapp.ui.fragments.videoplayer.VideoPlayViewModel
 import org.koin.android.ext.koin.androidApplication
@@ -37,6 +38,10 @@ val viewModelModule = module {
 
     viewModel {
         VideoPlayViewModel(get())
+    }
+
+    viewModel {
+        ContactViewModel(get())
     }
 
     /*viewModel {

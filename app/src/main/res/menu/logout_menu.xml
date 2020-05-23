@@ -2,6 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <item
+        android:id="@+id/menu_contact_us"
+        android:icon="@drawable/ic_icon_contact_us"
+        android:title="@string/menu_contact"
+        app:showAsAction="always" />
+
     <item
         android:id="@+id/menu_logout"
         android:icon="@drawable/ic_icon_logout"
