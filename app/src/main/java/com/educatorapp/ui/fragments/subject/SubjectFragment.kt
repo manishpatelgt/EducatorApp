@@ -32,9 +32,6 @@ class SubjectFragment :
             viewModel = mViewModel
         }
 
-        /** get subject list **/
-        mViewModel.getSubjects()
-
         /** Set observers*/
         setObservers()
 
@@ -88,12 +85,5 @@ class SubjectFragment :
         mViewModel.subjects.observe(viewLifecycleOwner, Observer { entries ->
             mAdapter.setSubjects(entries)
         })
-    }
-
-    private fun loadFragment(message_1: String, message_2: String) {
-        showFragment(
-            message_1,
-            message_2
-        )
     }
 }

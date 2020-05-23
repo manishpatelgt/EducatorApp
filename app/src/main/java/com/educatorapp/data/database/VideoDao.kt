@@ -23,7 +23,7 @@ interface VideoDao {
     suspend fun delete(video: VideoEntity)
 
     @Query("SELECT * FROM tbl_Videos WHERE Id=:Id")
-    suspend fun getVideo(Id: String): VideoEntity
+    fun getVideo(Id: String): LiveData<VideoEntity>
 
     @Query("DELETE FROM tbl_Videos")
     suspend fun deleteAll()

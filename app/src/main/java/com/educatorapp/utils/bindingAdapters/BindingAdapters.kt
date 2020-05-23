@@ -5,6 +5,7 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.educatorapp.model.Educator
@@ -56,6 +57,19 @@ fun setRatingText(view: TextView, rating: Float) {
 fun loadProfileImage(imageView: CircleImageView, url: String?) {
     url?.let {
         imageView.loadProfileUrl(url)
+    }
+}
+
+@BindingAdapter(value = ["setupVisibility"])
+fun ProgressBar.progressVisibility(status: State?) {
+    status?.let {
+        isVisible = when (it) {
+            State.LOADING -> true
+            State.DONE,
+            State.ERROR,
+            State.NOINTERNET,
+            State.NODATA -> false
+        }
     }
 }
 

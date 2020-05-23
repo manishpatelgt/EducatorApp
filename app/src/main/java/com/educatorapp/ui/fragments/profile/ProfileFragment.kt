@@ -28,15 +28,18 @@ class ProfileFragment :
     BaseFragment<ProfileViewModel, FragmentProfileBinding>(R.layout.fragment_profile) {
 
     override val mViewModel: ProfileViewModel by viewModels()
-
     private val preferencesHelper: PreferencesHelper by inject() // Property Injection
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mViewBinding.apply {
+
+        /*mViewBinding.apply {
             lifecycleOwner = lifecycleOwner
             viewModel = mViewModel
-        }
+        }*/
+
+        /** Set options menu */
+        setHasOptionsMenu(true)
 
         // Notes: never read preferences data from Main thread otherwise your UI hang and you can see "the application may be doing too much work on its main thread" message in your logcat
         lifecycleScope.launch(Dispatchers.IO) {

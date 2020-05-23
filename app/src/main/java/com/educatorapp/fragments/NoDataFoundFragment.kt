@@ -1,32 +1,23 @@
 package com.educatorapp.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.educatorapp.R
+import com.educatorapp.databinding.FragmentNoDataBinding
 import com.educatorapp.utils.extensions.gone
-import kotlinx.android.synthetic.main.fragment_no_data.*
 
-class NoDataFoundFragment : Fragment() {
+class NoDataFoundFragment : Fragment(R.layout.fragment_no_data) {
+
+    // Scoped to the lifecycle of the fragment's view (between onCreateView and onDestroyView)
+    private var fragmentNoDataBinding: FragmentNoDataBinding? = null
 
     private var message_1 = ""
     private var message_2 = ""
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val root = inflater.inflate(R.layout.fragment_no_data, container, false)
-        return root
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         /** message details **/
         arguments?.let {
             message_1 = it.getString(ARG_MESSAGE_1, "")
@@ -36,15 +27,23 @@ class NoDataFoundFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val binding = FragmentNoDataBinding.bind(view)
+        fragmentNoDataBinding = binding
 
         /** set message to textviews **/
-        txt_message_1.text = message_1
-        txt_message_2.text = message_2
+        binding.txtMessage1.text = message_1
+        binding.txtMessage2.text = message_2
 
         if (message_2.isNullOrEmpty()) {
-            txt_message_2.gone()
+            binding.txtMessage2.gone()
         }
 
+    }
+
+    override fun onDestroyView() {
+        // Consider not storing the binding instance in a field, if not needed.
+        fragmentNoDataBinding = null
+        super.onDestroyView()
     }
 
     companion object {

@@ -12,16 +12,6 @@ import com.educatorapp.R
 
 class ProgressDialogFragment : DialogFragment() {
 
-    override fun show(manager: FragmentManager, tag: String?) {
-        try {
-            val ft = manager.beginTransaction()
-            ft.add(this, tag)
-            ft.commitAllowingStateLoss()
-        } catch (e: IllegalStateException) {
-            //logger.debug("Error in Dialog.show()")
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

@@ -30,6 +30,10 @@ class SubjectViewModel : ViewModel() {
     val subjects: LiveData<List<Subject>>
         get() = _subjects
 
+    init {
+        getSubjects()
+    }
+
     fun getSubjects() {
 
         _status.value = State.LOADING

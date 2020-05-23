@@ -6,40 +6,62 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.educatorapp.databinding.CardViewFavoriteVideoBinding
-import com.educatorapp.model.VideoEntity
+import com.educatorapp.model.Video
+import com.educatorapp.utils.extensions.loadUrl
 
-class FavoriteVideoListAdapter(val onClickListener: OnClickListener) :
-    ListAdapter<VideoEntity, FavoriteVideoListAdapter.VideoViewHolder>(DIFF_CALLBACK) {
+class FavoriteVideoListAdapter(
+    val onClickListener: OnClickListener,
+    val onFavoriteClickListener: OnFavoriteClickListener
+) :
+    ListAdapter<Video, FavoriteVideoListAdapter.FavoriteVideoViewHolder>(DIFF_CALLBACK) {
 
-    private val mVideos: MutableList<VideoEntity> = mutableListOf()
+    private val mVideos: MutableList<Video> = mutableListOf()
 
-    inner class VideoViewHolder(private var binding: CardViewFavoriteVideoBinding) :
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
+    override fun getItemCount() = mVideos.size
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteVideoViewHolder {
+        return FavoriteVideoViewHolder(
+            CardViewFavoriteVideoBinding.inflate(
+                LayoutInflater.from(
+                    parent.context
+                ), parent, false
+            )
+        )
+    }
+
+    inner class FavoriteVideoViewHolder(private val binding: CardViewFavoriteVideoBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(video: VideoEntity) {
-            binding.video = video
-            binding.executePendingBindings()
-        }
-    }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
-        return VideoViewHolder(CardViewFavoriteVideoBinding.inflate(LayoutInflater.from(parent.context)))
-    }
+        fun bind(video: Video) {
+            binding.textVideoTitle.text = video.title
+            binding.thumbnailLogo.loadUrl(video.iconUrl)
 
-    override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
-        val video = getItem(position)
-        holder.itemView.setOnClickListener {
-            video?.let {
-                onClickListener.onClick(it)
+            binding.favoriteBtn.setOnClickListener {
+                onFavoriteClickListener.onFavClick(video)
+            }
+
+            binding.root.setOnClickListener {
+                onClickListener.onClick(video)
             }
         }
-        holder.bind(video)
     }
 
-    class OnClickListener(val clickListener: (video: VideoEntity) -> Unit) {
-        fun onClick(video: VideoEntity) = clickListener(video)
+    override fun onBindViewHolder(holder: FavoriteVideoViewHolder, position: Int) =
+        holder.bind(mVideos[position])
+
+    interface OnClickListener {
+        fun onClick(video: Video)
     }
 
-    fun setVideos(videoList: List<VideoEntity>) {
+    interface OnFavoriteClickListener {
+        fun onFavClick(video: Video)
+    }
+
+    fun setVideos(videoList: List<Video>) {
         clearAllVideos()
         mVideos.addAll(videoList)
         notifyDataSetChanged()
@@ -50,11 +72,11 @@ class FavoriteVideoListAdapter(val onClickListener: OnClickListener) :
     }
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<VideoEntity>() {
-            override fun areItemsTheSame(oldItem: VideoEntity, newItem: VideoEntity): Boolean =
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Video>() {
+            override fun areItemsTheSame(oldItem: Video, newItem: Video): Boolean =
                 oldItem.Id == newItem.Id
 
-            override fun areContentsTheSame(oldItem: VideoEntity, newItem: VideoEntity): Boolean =
+            override fun areContentsTheSame(oldItem: Video, newItem: Video): Boolean =
                 oldItem == newItem
 
         }

@@ -88,11 +88,4 @@ class EducatorsFragment :
         })
 
     }
-
-    private fun loadFragment(message_1: String, message_2: String) {
-        showFragment(
-            message_1,
-            message_2
-        )
-    }
 }

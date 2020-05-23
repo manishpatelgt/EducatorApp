@@ -7,7 +7,6 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Video (
-    @PrimaryKey
     var Id: String = "",
     var title: String = "",
     var description: String = "",
@@ -18,5 +17,5 @@ data class Video (
     var subjectId: String = "",
     var educatorId: String = "",
     var rating : Float = 0.0F,
-    var createdAt: String? = TimeHelper.getCurrentTimeString()
+    var createdAt: String = TimeHelper.getCurrentTimeString()
 ): Parcelable

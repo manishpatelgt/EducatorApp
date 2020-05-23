@@ -6,12 +6,6 @@
 
     <data>
 
-        <import type="android.view.View" />
-
-        <variable
-            name="state"
-            type="com.educatorapp.utils.enums.State" />
-
         <variable
             name="viewModel"
             type="com.educatorapp.ui.fragments.subject.SubjectViewModel" />
@@ -54,6 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:indeterminate="true"
+            app:setupVisibility="@{viewModel.status}"
             android:indeterminateTint="@color/colorPrimaryDark"
             android:minWidth="30dp"
             android:minHeight="30dp"
@@ -61,8 +56,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:setStatus="@{viewModel.status}" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

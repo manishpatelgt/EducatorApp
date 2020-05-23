@@ -2,24 +2,20 @@ package com.educatorapp.ui.fragments.educatorvideo
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.educatorapp.R
 import com.educatorapp.application.App
 import com.educatorapp.application.App.Companion.appContext
 import com.educatorapp.databinding.FragmentEducatorVideosBinding
 import com.educatorapp.model.Educator
-import com.educatorapp.ui.adapter.EducatorListAdapter
 import com.educatorapp.ui.adapter.EducatorVideoListAdapter
 import com.educatorapp.ui.base.BaseFragment
-import com.educatorapp.utils.constants.Constants
+import com.educatorapp.ui.fragments.videoplayer.VideoPlayActivity
 import com.educatorapp.utils.enums.State
 import com.educatorapp.utils.extensions.gone
 import com.educatorapp.utils.extensions.visible
-import com.educatorapp.utils.network.isNetworkAvailable
 
 class EducatorVideoFragment :
     BaseFragment<EducatorVideoViewModel, FragmentEducatorVideosBinding>(R.layout.fragment_educator_videos) {
@@ -41,8 +37,11 @@ class EducatorVideoFragment :
         /** Set observers*/
         setObservers()
 
-        mAdapter = EducatorVideoListAdapter(EducatorVideoListAdapter.OnClickListener {
+        mAdapter = EducatorVideoListAdapter(EducatorVideoListAdapter.OnClickListener { video ->
             /** Move to Educator Video Play fragment / Activity **/
+            requireActivity()?.let {
+                startActivity(VideoPlayActivity.getIntent(video))
+            }
         })
 
         mViewBinding.educatorVideoList.apply {
@@ -60,8 +59,8 @@ class EducatorVideoFragment :
                 State.LOADING -> mViewBinding.progress.visible()
                 State.ERROR -> {
                     loadFragment(
-                        App.appContext.getString(R.string.api_call_retry_message),
-                        App.appContext.getString(R.string.api_call_retry_message_2)
+                        appContext.getString(R.string.api_call_retry_message),
+                        appContext.getString(R.string.api_call_retry_message_2)
                     )
                 }
                 State.NOINTERNET -> {
@@ -82,12 +81,5 @@ class EducatorVideoFragment :
         mViewModel.videos.observe(viewLifecycleOwner, Observer { entries ->
             mAdapter.setVideos(entries)
         })
-    }
-
-    private fun loadFragment(message_1: String, message_2: String) {
-        showFragment(
-            message_1,
-            message_2
-        )
     }
 }

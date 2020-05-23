@@ -3,8 +3,7 @@ package com.educatorapp.di
 import com.educatorapp.data.database.EducatorDatabase
 import com.educatorapp.data.preferences.PreferencesHelper
 import com.educatorapp.ui.fragments.favorites.FavoriteViewModel
-import com.educatorapp.ui.fragments.profile.ProfileViewModel
-import com.educatorapp.ui.main.MainViewModel
+import com.educatorapp.ui.fragments.videoplayer.VideoPlayViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -34,6 +33,10 @@ val databaseModule = module {
 val viewModelModule = module {
     viewModel {
         FavoriteViewModel(get())
+    }
+
+    viewModel {
+        VideoPlayViewModel(get())
     }
 
     /*viewModel {

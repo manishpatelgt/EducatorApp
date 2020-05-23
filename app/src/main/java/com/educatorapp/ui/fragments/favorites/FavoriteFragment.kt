@@ -3,16 +3,19 @@ package com.educatorapp.ui.fragments.favorites
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.educatorapp.R
 import com.educatorapp.application.App
 import com.educatorapp.databinding.FragmentFavoriteBinding
 import com.educatorapp.model.Video
 import com.educatorapp.ui.adapter.FavoriteVideoListAdapter
 import com.educatorapp.ui.base.BaseFragment
+import com.educatorapp.ui.fragments.videoplayer.VideoPlayActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class FavoriteFragment :
-    BaseFragment<FavoriteViewModel, FragmentFavoriteBinding>(R.layout.fragment_favorite) {
+    BaseFragment<FavoriteViewModel, FragmentFavoriteBinding>(R.layout.fragment_favorite),
+    FavoriteVideoListAdapter.OnClickListener, FavoriteVideoListAdapter.OnFavoriteClickListener {
 
     // lazy inject MyViewModel
     override val mViewModel: FavoriteViewModel by viewModel()
@@ -21,52 +24,22 @@ class FavoriteFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mViewBinding.apply {
-            lifecycleOwner = lifecycleOwner
-            viewModel = mViewModel
-        }
-
         /** Set observers*/
         setObservers()
-        mAdapter =
-            FavoriteVideoListAdapter(FavoriteVideoListAdapter.OnClickListener { videoEntity ->
-                /** Move to Educator Video Play fragment **/
-                requireActivity()?.let {
-                    val video = Video(
-                        videoEntity.Id,
-                        videoEntity.title,
-                        videoEntity.description,
-                        videoEntity.iconUrl,
-                        videoEntity.videoUrl,
-                        videoEntity.totalComment,
-                        videoEntity.totalLikes,
-                        videoEntity.subjectId,
-                        videoEntity.educatorId,
-                        videoEntity.rating
-                    )
-                    //startActivity(VideoPlayActivity.getIntent(video))
-                }
-            })
+        mAdapter = FavoriteVideoListAdapter(this, this)
 
-        /*mViewBinding.favoriteVideoList.adapter =
-            FavoriteVideoListAdapter(FavoriteVideoListAdapter.OnClickListener { videoEntity ->
-                /** Move to Educator Video Play fragment **/
-                requireActivity()?.let {
-                    val video = Video(
-                        videoEntity.Id,
-                        videoEntity.title,
-                        videoEntity.description,
-                        videoEntity.iconUrl,
-                        videoEntity.videoUrl,
-                        videoEntity.totalComment,
-                        videoEntity.totalLikes,
-                        videoEntity.subjectId,
-                        videoEntity.educatorId,
-                        videoEntity.rating
-                    )
-                }
-                //startActivity(VideoPlayActivity.getIntent(video))
-            })*/
+        /*mAdapter = FavoriteVideoListAdapter(FavoriteVideoListAdapter.OnClickListener { video ->
+            /** Move to Educator Video Play fragment **/
+            requireActivity()?.let {
+                startActivity(VideoPlayActivity.getIntent(video))
+            }
+        })*/
+
+        mViewBinding.favoriteVideoList.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
+            adapter = mAdapter
+        }
     }
 
     private fun setObservers() {
@@ -83,10 +56,15 @@ class FavoriteFragment :
         })
     }
 
-    private fun loadFragment(message_1: String, message_2: String) {
-        showFragment(
-            message_1,
-            message_2
-        )
+    override fun onClick(video: Video) {
+        /** Move to Educator Video Play fragment **/
+        requireActivity()?.let {
+            startActivity(VideoPlayActivity.getIntent(video))
+        }
     }
+
+    override fun onFavClick(video: Video) {
+        mViewModel.removeVideoFavorite(video)
+    }
+
 }

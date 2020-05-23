@@ -69,6 +69,13 @@ abstract class BaseFragment<VM : ViewModel, T : ViewDataBinding>(@LayoutRes val 
         }*/
     }
 
+     fun loadFragment(message_1: String, message_2: String) {
+        showFragment(
+            message_1,
+            message_2
+        )
+    }
+
     fun showFragment(message_1: String, message_2: String) {
         val noDataFoundFragment =
             NoDataFoundFragment.create(
