@@ -35,13 +35,6 @@ class FavoriteFragment :
         setObservers()
         mAdapter = FavoriteVideoListAdapter(this, this)
 
-        /*mAdapter = FavoriteVideoListAdapter(FavoriteVideoListAdapter.OnClickListener { video ->
-            /** Move to Educator Video Play fragment **/
-            requireActivity()?.let {
-                startActivity(VideoPlayActivity.getIntent(video))
-            }
-        })*/
-
         mViewBinding.favoriteVideoList.apply {
             layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)

@@ -1,19 +1,19 @@
 package com.educatorapp.ui.fragments.educators
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
+import android.util.Log
+import androidx.lifecycle.*
 import com.educatorapp.model.Educator
 import com.educatorapp.model.Subject
+import com.educatorapp.model.VideoEntity
 import com.educatorapp.utils.enums.State
 import com.educatorapp.utils.network.isNetworkAvailable
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
-class EducatorsViewModel(state : SavedStateHandle) : ViewModel() {
+class EducatorsViewModel() : ViewModel() {
 
+    val TAG = EducatorsViewModel::class.simpleName
     private var mDatabase: DatabaseReference = Firebase.database.reference
 
     private val _status = MutableLiveData<State>()
@@ -44,7 +44,6 @@ class EducatorsViewModel(state : SavedStateHandle) : ViewModel() {
         query.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 _status.value = State.DONE
-
                 if (dataSnapshot.exists()) {
                     val mEducators: MutableList<Educator> = mutableListOf()
                     for (snapshot in dataSnapshot.children) {

@@ -1,6 +1,5 @@
 package com.educatorapp.ui.fragments.educators
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
@@ -9,7 +8,6 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.educatorapp.R
-import com.educatorapp.application.App
 import com.educatorapp.application.App.Companion.appContext
 import com.educatorapp.databinding.FragmentEducatorsBinding
 import com.educatorapp.model.Subject
@@ -20,8 +18,6 @@ import com.educatorapp.utils.constants.Constants
 import com.educatorapp.utils.enums.State
 import com.educatorapp.utils.extensions.gone
 import com.educatorapp.utils.extensions.visible
-import com.educatorapp.utils.network.isNetworkAvailable
-import org.koin.android.ext.android.inject
 
 class EducatorsFragment :
     BaseFragment<EducatorsViewModel, FragmentEducatorsBinding>(R.layout.fragment_educators) {
@@ -33,8 +29,11 @@ class EducatorsFragment :
         super.onViewCreated(view, savedInstanceState)
         var selectedSubject = arguments?.getParcelable<Subject>("subject")
 
-        /** get Eduactor list based on selected subject **/
-        mViewModel.getEducators(selectedSubject?.Id)
+        // TO DO - this is not right way to do so
+        if (mViewModel.educators.value == null) {
+            /** get Eduactor list based on selected subject **/
+            mViewModel.getEducators(selectedSubject?.Id)
+        }
 
         /** Set observers*/
         setObservers()
@@ -59,7 +58,6 @@ class EducatorsFragment :
     }
 
     private fun setObservers() {
-
         /** Set observer for a Status */
         mViewModel.status.observe(viewLifecycleOwner, Observer {
             when (it) {
