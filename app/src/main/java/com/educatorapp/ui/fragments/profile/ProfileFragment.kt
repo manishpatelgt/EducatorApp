@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -14,7 +15,9 @@ import com.educatorapp.data.preferences.PreferencesHelper
 import com.educatorapp.databinding.FragmentProfileBinding
 import com.educatorapp.ui.base.BaseFragment
 import com.educatorapp.ui.login.LoginActivity
+import com.educatorapp.ui.main.MainViewModel
 import com.educatorapp.utils.clients.GoogleSign
+import com.educatorapp.utils.constants.Constants
 import com.educatorapp.utils.extensions.loadProfileUrl
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.shreyaspatil.MaterialDialog.MaterialDialog
@@ -23,16 +26,19 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.koin.android.ext.android.inject
-import org.koin.android.viewmodel.ext.android.viewModel
 
 class ProfileFragment :
     BaseFragment<ProfileViewModel, FragmentProfileBinding>(R.layout.fragment_profile) {
 
     override val mViewModel: ProfileViewModel by viewModels()
     private val preferencesHelper: PreferencesHelper by inject() // Property Injection
+    private val sharedViewModel: MainViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        /** Set fragment state in shared view model */
+        sharedViewModel.setFragmentStateHolder(Constants.FRAGMENT_PROFILE)
 
         /*mViewBinding.apply {
             lifecycleOwner = lifecycleOwner

@@ -2,6 +2,7 @@ package com.educatorapp.ui.fragments.educators
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.educatorapp.model.Educator
 import com.educatorapp.model.Subject
@@ -11,7 +12,7 @@ import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
-class EducatorsViewModel : ViewModel() {
+class EducatorsViewModel(state : SavedStateHandle) : ViewModel() {
 
     private var mDatabase: DatabaseReference = Firebase.database.reference
 

@@ -2,15 +2,18 @@ package com.educatorapp.ui.fragments.favorites
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.educatorapp.R
-import com.educatorapp.application.App
+import com.educatorapp.application.App.Companion.appContext
 import com.educatorapp.databinding.FragmentFavoriteBinding
 import com.educatorapp.model.Video
 import com.educatorapp.ui.adapter.FavoriteVideoListAdapter
 import com.educatorapp.ui.base.BaseFragment
 import com.educatorapp.ui.fragments.videoplayer.VideoPlayActivity
+import com.educatorapp.ui.main.MainViewModel
+import com.educatorapp.utils.constants.Constants
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class FavoriteFragment :
@@ -20,9 +23,13 @@ class FavoriteFragment :
     // lazy inject MyViewModel
     override val mViewModel: FavoriteViewModel by viewModel()
     private lateinit var mAdapter: FavoriteVideoListAdapter
+    private val sharedViewModel: MainViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        /** Set fragment state in shared view model */
+        sharedViewModel.setFragmentStateHolder(Constants.FRAGMENT_FAVORITE)
 
         /** Set observers*/
         setObservers()
@@ -46,8 +53,8 @@ class FavoriteFragment :
         mViewModel.favoriteVideoList.observe(viewLifecycleOwner, Observer {
             if (it.isEmpty()) {
                 mAdapter.setVideos(emptyList())
-                loadFragment(
-                    App.appContext.getString(R.string.favorite_video_list_empty_message),
+                showFragment(
+                    appContext.getString(R.string.favorite_video_list_empty_message),
                     ""
                 )
             } else {

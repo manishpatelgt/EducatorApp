@@ -25,7 +25,6 @@ import com.livinglifetechway.quickpermissions_kotlin.util.QuickPermissionsReques
 abstract class BaseFragment<VM : ViewModel, T : ViewDataBinding>(@LayoutRes val layout: Int) :
     Fragment() {
 
-    var progressDialog: ProgressDialogFragment? = null
     var isNavigated = false
 
     protected abstract val mViewModel: VM
@@ -69,13 +68,6 @@ abstract class BaseFragment<VM : ViewModel, T : ViewDataBinding>(@LayoutRes val 
         }*/
     }
 
-     fun loadFragment(message_1: String, message_2: String) {
-        showFragment(
-            message_1,
-            message_2
-        )
-    }
-
     fun showFragment(message_1: String, message_2: String) {
         val noDataFoundFragment =
             NoDataFoundFragment.create(
@@ -87,24 +79,6 @@ abstract class BaseFragment<VM : ViewModel, T : ViewDataBinding>(@LayoutRes val 
         ft.commitAllowingStateLoss()
     }
 
-    fun showProgress(show: Boolean) {
-        if (show) {
-            if (progressDialog == null) {
-                progressDialog = ProgressDialogFragment.create()
-                progressDialog!!.show(
-                    childFragmentManager,
-                    DIALOG_PROGRESS
-                )
-            }
-        } else {
-            val progressDialogFragment =
-                childFragmentManager.findFragmentByTag(DIALOG_PROGRESS) as ProgressDialogFragment?
-            if (progressDialogFragment != null && progressDialogFragment.isVisible) {
-                progressDialog = null
-                progressDialogFragment.dismissAllowingStateLoss()
-            }
-        }
-    }
 
     fun rationaleCallback(req: QuickPermissionsRequest, permission: String) {
         AlertDialog.Builder(requireActivity())
@@ -130,6 +104,5 @@ abstract class BaseFragment<VM : ViewModel, T : ViewDataBinding>(@LayoutRes val 
 
     companion object {
         val TAG = BaseFragment::class.java.simpleName
-        val DIALOG_PROGRESS = "DialogProgress"
     }
 }

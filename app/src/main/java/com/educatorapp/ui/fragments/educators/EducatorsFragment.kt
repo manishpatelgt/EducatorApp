@@ -43,7 +43,7 @@ class EducatorsFragment :
             /** Move to Educator Video list Fragment **/
             val title = " ${Constants.EDUCATORS} (${it.name})"
             /*navigateWithAction(
-                EducatorsFragmentDirections.activeEducatorVideoListScreen(
+                EducatorsFragmentDirections.actionEducatorVideoListScreen(
                     title, it
                 )
             )*/
@@ -65,18 +65,18 @@ class EducatorsFragment :
             when (it) {
                 State.LOADING -> mViewBinding.progress.visible()
                 State.ERROR -> {
-                    loadFragment(
-                        App.appContext.getString(R.string.api_call_retry_message),
-                        App.appContext.getString(R.string.api_call_retry_message_2)
+                    showFragment(
+                        appContext.getString(R.string.api_call_retry_message),
+                        appContext.getString(R.string.api_call_retry_message_2)
                     )
                 }
                 State.NOINTERNET -> {
                     mViewBinding.progress.gone()
-                    loadFragment(appContext.getString(R.string.no_internet_connection), "")
+                    showFragment(appContext.getString(R.string.no_internet_connection), "")
                 }
                 State.NODATA -> {
                     mViewBinding.progress.gone()
-                    loadFragment(appContext.getString(R.string.no_data_found_message_2), "")
+                    showFragment(appContext.getString(R.string.no_data_found_message_2), "")
                 }
                 State.DONE -> {
                     mViewBinding.progress.gone()

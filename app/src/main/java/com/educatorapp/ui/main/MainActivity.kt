@@ -12,8 +12,10 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.educatorapp.R
 import com.educatorapp.application.App
+import com.educatorapp.application.App.Companion.appContext
 import com.educatorapp.databinding.ActivityMainBinding
 import com.educatorapp.ui.base.BaseActivity
+import com.educatorapp.utils.constants.Constants
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import es.dmoral.toasty.Toasty
 
@@ -73,6 +75,16 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 else -> navController.navigateUp()
             }
         }*/
+
+        /** Setup fragment state observer  */
+        val fragmentStateObserver = Observer<String> { state ->
+            when (state) {
+                Constants.FRAGMENT_SUBJECTS -> navController.navigate(R.id.navigation_subject)
+                Constants.FRAGMENT_FAVORITE -> navController.navigate(R.id.navigation_favorite)
+                Constants.FRAGMENT_PROFILE -> navController.navigate(R.id.navigation_profile)
+            }
+        }
+        mViewModel.fragmentState.observe(this, fragmentStateObserver)
     }
 
     private fun setObservers() {
@@ -89,6 +101,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     }
 
     companion object {
-        fun getIntent() = Intent(App.appContext, MainActivity::class.java)
+        val TAG = MainActivity::class.simpleName
+        fun getIntent() = Intent(appContext, MainActivity::class.java)
     }
 }

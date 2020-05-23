@@ -1,9 +1,9 @@
 package com.educatorapp.ui.fragments.subject
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
 import com.educatorapp.R
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -13,20 +13,24 @@ import com.educatorapp.application.App.Companion.appContext
 import com.educatorapp.databinding.FragmentSubjectBinding
 import com.educatorapp.ui.adapter.SubjectListAdapter
 import com.educatorapp.ui.base.BaseFragment
+import com.educatorapp.ui.main.MainViewModel
 import com.educatorapp.utils.constants.Constants
 import com.educatorapp.utils.enums.State.*
 import com.educatorapp.utils.extensions.gone
 import com.educatorapp.utils.extensions.visible
-import org.koin.android.ext.android.inject
 
 class SubjectFragment :
     BaseFragment<SubjectViewModel, FragmentSubjectBinding>(R.layout.fragment_subject) {
 
     override val mViewModel: SubjectViewModel by viewModels()
     private lateinit var mAdapter: SubjectListAdapter
+    private val sharedViewModel: MainViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        /** Set fragment state in shared view model */
+        sharedViewModel.setFragmentStateHolder(Constants.FRAGMENT_SUBJECTS)
 
         mViewBinding.apply {
             lifecycleOwner = lifecycleOwner
@@ -63,18 +67,18 @@ class SubjectFragment :
                 LOADING -> mViewBinding.progress.visible()
                 ERROR -> {
                     mViewBinding.progress.gone()
-                    loadFragment(
+                    showFragment(
                         appContext.getString(R.string.api_call_retry_message),
                         appContext.getString(R.string.api_call_retry_message_2)
                     )
                 }
                 NODATA -> {
                     mViewBinding.progress.gone()
-                    loadFragment(appContext.getString(R.string.no_data_found_message_3), "")
+                    showFragment(appContext.getString(R.string.no_data_found_message_3), "")
                 }
                 NOINTERNET -> {
                     mViewBinding.progress.gone()
-                    loadFragment(appContext.getString(R.string.no_internet_connection), "")
+                    showFragment(appContext.getString(R.string.no_internet_connection), "")
                 }
                 DONE -> {
                     mViewBinding.progress.gone()

@@ -58,18 +58,18 @@ class EducatorVideoFragment :
             when (it) {
                 State.LOADING -> mViewBinding.progress.visible()
                 State.ERROR -> {
-                    loadFragment(
+                    showFragment(
                         appContext.getString(R.string.api_call_retry_message),
                         appContext.getString(R.string.api_call_retry_message_2)
                     )
                 }
                 State.NOINTERNET -> {
                     mViewBinding.progress.gone()
-                    loadFragment(appContext.getString(R.string.no_internet_connection), "")
+                    showFragment(appContext.getString(R.string.no_internet_connection), "")
                 }
                 State.NODATA -> {
                     mViewBinding.progress.gone()
-                    loadFragment(appContext.getString(R.string.no_data_found_message), "")
+                    showFragment(appContext.getString(R.string.no_data_found_message), "")
                 }
                 State.DONE -> {
                     mViewBinding.progress.gone()
