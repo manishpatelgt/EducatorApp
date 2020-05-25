@@ -152,6 +152,11 @@ class VideoPlayViewModel constructor(
         }
     }
 
+    fun deleteComment(videoComment: VideoComment,   key: String){
+        mDatabase.child("Videos").child(key).child("Comments").child(videoComment.Id).removeValue().addOnCompleteListener {
+            _isSubmitted.value = true
+        }
+    }
 
     fun resetSubmit() {
         _isSubmitted.value = false

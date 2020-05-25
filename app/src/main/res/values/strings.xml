@@ -70,4 +70,8 @@
     <string name="feedback_required_message">Enter message</string>
     <string name="feedback_submitted_message">Your feedback submitted successfully. Thank you!</string>
     <string name="comment_hint">Enter comment</string>
+
+    <string name="action_edit">Edit</string>
+    <string name="action_delete">Delete</string>
+
 </resources>

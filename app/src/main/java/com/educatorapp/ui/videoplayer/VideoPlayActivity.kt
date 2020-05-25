@@ -11,6 +11,7 @@ import com.educatorapp.R
 import com.educatorapp.application.App.Companion.appContext
 import com.educatorapp.databinding.ActivityVideoPlayBinding
 import com.educatorapp.model.Video
+import com.educatorapp.model.VideoComment
 import com.educatorapp.ui.adapter.VideoCommentAdapter
 import com.educatorapp.ui.base.BaseActivity
 import com.educatorapp.utils.clients.VideoClient
@@ -20,6 +21,7 @@ import com.educatorapp.utils.extensions.isAtLeastAndroid6
 import com.educatorapp.utils.extensions.recyclerDivider
 import com.educatorapp.utils.extensions.visible
 import com.educatorapp.utils.network.isNetworkAvailable
+import com.educatorapp.utils.states.CommentState
 import com.google.android.exoplayer2.DefaultLoadControl
 import com.google.android.exoplayer2.DefaultRenderersFactory
 import com.google.android.exoplayer2.ExoPlayerFactory
@@ -33,7 +35,7 @@ import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
 
 class VideoPlayActivity : BaseActivity<VideoPlayViewModel, ActivityVideoPlayBinding>(),
-    View.OnClickListener {
+    View.OnClickListener, VideoCommentAdapter.OnClickListener {
 
     override fun getViewBinding(): ActivityVideoPlayBinding =
         ActivityVideoPlayBinding.inflate(layoutInflater)
@@ -76,7 +78,7 @@ class VideoPlayActivity : BaseActivity<VideoPlayViewModel, ActivityVideoPlayBind
         /** get video comment **/
         mViewModel.getVideoComments(video.key)
 
-        mAdapter = VideoCommentAdapter()
+        mAdapter = VideoCommentAdapter(this)
 
         mViewBinding.commentsList.apply {
             addItemDecoration(recyclerDivider())
@@ -279,6 +281,19 @@ class VideoPlayActivity : BaseActivity<VideoPlayViewModel, ActivityVideoPlayBind
         fun getIntent(video: Video) = Intent(appContext, VideoPlayActivity::class.java).apply {
             putExtra(EXTRA, video)
         }
+    }
+
+    override fun onClick(videoComment: VideoComment, commentState: CommentState) {
+        when (commentState) {
+            is CommentState.EditComment -> {
+
+            }
+            is CommentState.DeleteComment -> {
+                //Delete comment from firebase
+                mViewModel.deleteComment(videoComment, video.key)
+            }
+        }
+
     }
 
 }
