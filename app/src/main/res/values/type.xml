@@ -8,11 +8,41 @@
         <item name="fontFamily">@font/calibri</item>
     </style>
 
+    <style name="TextAppearance.Educator.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="android:textSize">@dimen/dimen_22sp</item>
+        <item name="android:textColor">@color/color_text_4</item>
+    </style>
+
     <style name="TextAppearance.Educator.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
         <item name="android:textSize">@dimen/dimen_26sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:maxLines">1</item>
         <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TextAppearance.Educator.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">@font/calibri</item>
+        <item name="android:textSize">@dimen/dimen_18sp</item>
+        <item name="android:textColor">@color/color_text</item>
+    </style>
+
+    <style name="TextAppearance.Educator.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="fontFamily">@font/calibri</item>
+        <item name="android:textSize">@dimen/dimen_14sp</item>
+        <item name="android:textColor">@color/color_text_7</item>
+    </style>
+
+    <style name="TextAppearance.Educator.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/calibri</item>
+        <item name="android:textSize">@dimen/dimen_16sp</item>
+        <item name="lineHeight">@dimen/dimen_24sp</item>
+        <item name="android:textColor">@color/color_text_2</item>
+    </style>
+
+    <style name="TextAppearance.Educator.Body2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/calibri</item>
+        <item name="android:textSize">@dimen/dimen_14sp</item>
+        <item name="android:textColor">@color/color_text</item>
     </style>
 
     <style name="ActiveText">
@@ -80,4 +110,6 @@
         <item name="android:textColor">@color/textcolor9</item>
         <item name="android:textSize">@dimen/dimen_22sp</item>
     </style>
+
+
 </resources>

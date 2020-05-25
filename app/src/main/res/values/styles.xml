@@ -16,12 +16,11 @@
     <style name="CustomExoMediaButton.Pause">
         <item name="android:src">@drawable/ic_pause_circle_filled</item>
     </style>
-    
+
     <style name="RatingBar" parent="android:style/Widget.Material.RatingBar.Small">
         <item name="colorControlNormal">@color/colorPrimary</item>
         <item name="colorControlActivated">@color/colorPrimaryDark</item>
     </style>
-
 
     <!-- Bottom Menu style - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - -->
     <style name="BottomMenuStyle" parent="Widget.MaterialComponents.BottomNavigationView">
@@ -82,4 +81,9 @@
         <item name="cornerRadius">@dimen/dimen_10dp</item>
         <item name="android:layout_margin">@dimen/dimen_10dp</item>
     </style>
+
+    <style name="SensibleDefaultsMaterialCard" parent="Widget.MaterialComponents.CardView">
+        <item name="android:layout_margin">@dimen/dimen_10dp</item>
+    </style>
+
 </resources>

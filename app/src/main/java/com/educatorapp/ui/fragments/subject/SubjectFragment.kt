@@ -32,11 +32,6 @@ class SubjectFragment :
         /** Set fragment state in shared view model */
         sharedViewModel.setFragmentStateHolder(Constants.FRAGMENT_SUBJECTS)
 
-        mViewBinding.apply {
-            lifecycleOwner = lifecycleOwner
-            viewModel = mViewModel
-        }
-
         /** Set observers*/
         setObservers()
 
@@ -60,6 +55,11 @@ class SubjectFragment :
     }
 
     private fun setObservers() {
+
+        /** Setup subject list observer  */
+        mViewModel.subjects.observe(viewLifecycleOwner, Observer { entries ->
+            mAdapter.setSubjects(entries)
+        })
 
         /** Set observer for a Status */
         mViewModel.status.observe(viewLifecycleOwner, Observer {
@@ -86,10 +86,6 @@ class SubjectFragment :
             }
         })
 
-        /** Setup subject list observer  */
-        mViewModel.subjects.observe(viewLifecycleOwner, Observer { entries ->
-            mAdapter.setSubjects(entries)
-        })
     }
 
 }

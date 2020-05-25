@@ -19,8 +19,8 @@
         <!-- Avatar -->
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/user_profile"
-            android:layout_width="@dimen/dimen_100dp"
-            android:layout_height="@dimen/dimen_100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_20dp"
             android:scaleType="centerCrop"
             android:contentDescription="@string/cd_avatar"

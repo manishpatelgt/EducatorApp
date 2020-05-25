@@ -45,12 +45,9 @@
         <!-- Video title text -->
         <TextView
             android:id="@+id/txt_video_title"
+            style="?attr/textAppearanceHeadline3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/calibri"
-            android:padding="@dimen/dimen_5dp"
-            android:textColor="@color/color_text_4"
-            android:textSize="@dimen/dimen_24sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Maths -1 Lecture" />
@@ -59,13 +56,10 @@
         <TextView
             android:id="@+id/txt_video_info"
             android:layout_width="0dp"
+            style="?attr/textAppearanceBody1"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:fontFamily="@font/calibri"
             android:maxLines="2"
-            android:paddingLeft="@dimen/dimen_5dp"
-            android:textColor="@color/color_text_2"
-            android:textSize="@dimen/dimen_15sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_video_title"
             tools:text="Maths -1 Lecture Lecture Lecture Lecture Lecture Lecture" />

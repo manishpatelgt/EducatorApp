@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 
 class FavoriteViewModel constructor(private val videoDao: VideoDao) : ViewModel() {
 
-    val favoriteVideoList: LiveData<List<Video>> = Transformations.map(videoDao.getAllVideo()) {
+    val favoriteVideoList = Transformations.map(videoDao.getAllVideo()) {
         it.asDomainModel()
     }
 

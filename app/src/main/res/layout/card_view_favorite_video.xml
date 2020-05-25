@@ -18,9 +18,9 @@
             android:id="@+id/card_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            app:cardCornerRadius="5dp"
-            app:cardElevation="5dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
+            app:cardCornerRadius="@dimen/dimen_5dp"
+            app:cardElevation="@dimen/dimen_2dp"
             app:cardPreventCornerOverlap="false"
             app:cardUseCompatPadding="true"
             app:contentPadding="0dp"
@@ -57,7 +57,7 @@
                     <!-- Video title text -->
                     <TextView
                         android:id="@+id/text_video_title"
-                        style="@style/GenericTextStyle"
+                        style="?attr/textAppearanceHeadline3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/dimen_5dp"

@@ -5,7 +5,7 @@
     <color name="colorPrimary">#0061BF</color>
     <color name="colorPrimaryDark">#014384</color>
     <color name="colorOnPrimary">@android:color/white</color>
-
+    <color name="colorAccent">#00838F</color>
     <color name="colorSurface">@android:color/white</color>
 
     <!-- Title -->
@@ -43,7 +43,7 @@
     <color name="notifications_background">#6679d8</color>
 
     <color name="windowBackground">#F3F3F3</color>
-    <color name="colorAccent">#00838F</color>
+
     <color name="statusBarColor">@android:color/white</color>
     <color name="statusBarColorFade">#0DFFFFFF</color>
 

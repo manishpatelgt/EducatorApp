@@ -4,6 +4,9 @@
     <!-- Base application theme. -->
     <style name="Theme.EducatorApp" parent="Theme.MaterialComponents.Light.NoActionBar">
 
+        <!-- Customize app's theme here. -->
+        <item name="android:windowContentTransitions">true</item>
+
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -19,6 +22,7 @@
         <item name="material_dialog_negative_button_text_color">@color/colorPrimaryDark</item>
 
         <!-- Background -->
+        <item name="android:colorBackground">@color/colorSurface</item>
         <item name="colorSurface">@color/colorSurface</item>
 
         <!-- Title -->
@@ -33,13 +37,26 @@
         <item name="colorControlHighlight">@color/colorControlHighlight</item>
         <item name="colorControlActivated">@color/colorControlActivated</item>
 
-        <!-- * * * * * * STYLES * * * * * * -->
-        <!-- BOTTOM NAVIGATION -->
-        <item name="bottomNavigationStyle">@style/BottomMenuStyle</item>
+        <!-- FONTS -->
+        <item name="android:fontFamily">@font/calibri</item>
+        <item name="fontFamily">@font/calibri</item>
+
+        <!--<item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Educator.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Educator.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Educator.LargeComponent</item>-->
 
         <!--Typography-->
         <item name="textAppearanceHeadline2">@style/TextAppearance.Educator.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.Educator.Headline3</item>
         <item name="textAppearanceHeadline5">@style/TextAppearance.Educator.Headline5</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.Educator.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.Educator.Subtitle2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.Educator.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.Educator.Body2</item>
+
+        <!-- * * * * * * STYLES * * * * * * -->
+        <!-- BOTTOM NAVIGATION -->
+        <item name="bottomNavigationStyle">@style/BottomMenuStyle</item>
 
     </style>
 

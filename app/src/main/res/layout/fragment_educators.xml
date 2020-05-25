@@ -38,6 +38,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:spanCount="5"
+            android:layout_margin="@dimen/dimen_5dp"
             tools:listitem="@layout/card_view_educator_item" />
 
         <!-- progress -->

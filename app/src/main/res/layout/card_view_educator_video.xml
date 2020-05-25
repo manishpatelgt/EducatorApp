@@ -18,12 +18,12 @@
             android:id="@+id/card_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            app:cardCornerRadius="5dp"
-            app:cardElevation="5dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
+            app:cardCornerRadius="@dimen/dimen_5dp"
+            app:cardElevation="@dimen/dimen_5dp"
             app:cardPreventCornerOverlap="false"
             app:cardUseCompatPadding="true"
-            app:contentPadding="0dp"
+            app:contentPadding="@dimen/dimen_5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/dimen_0dp">
+                android:padding="@dimen/dimen_5dp">
 
                 <!-- Educator video thumbnail Image -->
                 <androidx.appcompat.widget.AppCompatImageView
@@ -57,7 +57,7 @@
                     <!-- Video title text -->
                     <TextView
                         android:id="@+id/text_video_title"
-                        style="@style/GenericTextStyle"
+                        style="?attr/textAppearanceHeadline3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/dimen_5dp"
@@ -92,11 +92,10 @@
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/like_img"
                             android:layout_width="wrap_content"
-                            android:gravity="center"
+                            android:gravity="center|center_horizontal"
                             android:layout_height="match_parent"
                             android:adjustViewBounds="true"
                             android:contentDescription="@string/text_educator_video_image"
-                            android:tint="@color/colorPrimary"
                             app:srcCompat="@drawable/ic_liked" />
 
                     </LinearLayout>

@@ -58,6 +58,12 @@ class EducatorsFragment :
     }
 
     private fun setObservers() {
+
+        /** Setup educator list observer  */
+        mViewModel.educators.observe(viewLifecycleOwner, Observer { entries ->
+            mAdapter.setEducators(entries)
+        })
+
         /** Set observer for a Status */
         mViewModel.status.observe(viewLifecycleOwner, Observer {
             when (it) {
@@ -80,11 +86,6 @@ class EducatorsFragment :
                     mViewBinding.progress.gone()
                 }
             }
-        })
-
-        /** Setup educator list observer  */
-        mViewModel.educators.observe(viewLifecycleOwner, Observer { entries ->
-            mAdapter.setEducators(entries)
         })
     }
 

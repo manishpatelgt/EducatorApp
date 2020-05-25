@@ -53,6 +53,11 @@ class EducatorVideoFragment :
 
     private fun setObservers() {
 
+        /** Setup educator video list observer  */
+        mViewModel.videos.observe(viewLifecycleOwner, Observer { entries ->
+            mAdapter.setVideos(entries)
+        })
+
         /** Set observer for a Status */
         mViewModel.status.observe(viewLifecycleOwner, Observer {
             when (it) {
@@ -75,11 +80,6 @@ class EducatorVideoFragment :
                     mViewBinding.progress.gone()
                 }
             }
-        })
-
-        /** Setup educator video list observer  */
-        mViewModel.videos.observe(viewLifecycleOwner, Observer { entries ->
-            mAdapter.setVideos(entries)
         })
     }
 }
