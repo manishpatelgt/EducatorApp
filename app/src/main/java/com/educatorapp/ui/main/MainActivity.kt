@@ -94,12 +94,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         })
     }
 
-
-    /** Show toast message */
-    fun showToastMessage(toastMessage: String) {
-        Toasty.info(this, toastMessage, Toast.LENGTH_LONG, false).show()
-    }
-
     companion object {
         val TAG = MainActivity::class.simpleName
         fun getIntent() = Intent(appContext, MainActivity::class.java)

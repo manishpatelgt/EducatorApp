@@ -23,13 +23,13 @@
             app:cardElevation="@dimen/dimen_2dp"
             app:cardPreventCornerOverlap="false"
             app:cardUseCompatPadding="true"
-            app:contentPadding="0dp"
+            app:contentPadding="@dimen/dimen_0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/dimen_0dp">
@@ -50,6 +50,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:padding="@dimen/dimen_10dp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/thumbnail_logo">
@@ -60,7 +61,6 @@
                         style="?attr/textAppearanceHeadline3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/dimen_5dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -70,7 +70,6 @@
                         android:id="@+id/favorite_btn"
                         android:layout_width="@dimen/dimen_30dp"
                         android:layout_height="@dimen/dimen_30dp"
-                        android:layout_margin="@dimen/dimen_10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"

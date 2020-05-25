@@ -6,12 +6,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.educatorapp.R
-import com.educatorapp.application.App.Companion.appContext
 import com.educatorapp.databinding.FragmentFavoriteBinding
 import com.educatorapp.model.Video
 import com.educatorapp.ui.adapter.FavoriteVideoListAdapter
 import com.educatorapp.ui.base.BaseFragment
-import com.educatorapp.ui.fragments.videoplayer.VideoPlayActivity
+import com.educatorapp.ui.videoplayer.VideoPlayActivity
 import com.educatorapp.ui.main.MainViewModel
 import com.educatorapp.utils.constants.Constants
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -47,7 +46,7 @@ class FavoriteFragment :
             if (it.isEmpty()) {
                 mAdapter.setVideos(emptyList())
                 showFragment(
-                    appContext.getString(R.string.favorite_video_list_empty_message),
+                    getString(R.string.favorite_video_list_empty_message),
                     ""
                 )
             } else {
@@ -65,6 +64,7 @@ class FavoriteFragment :
 
     override fun onFavClick(video: Video) {
         mViewModel.removeVideoFavorite(video)
+        sharedViewModel.setToastMessage(getString(R.string.favorite_removed_message))
     }
 
 }

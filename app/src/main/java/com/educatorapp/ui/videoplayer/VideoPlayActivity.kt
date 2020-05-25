@@ -1,20 +1,25 @@
-package com.educatorapp.ui.fragments.videoplayer
+package com.educatorapp.ui.videoplayer
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import org.koin.android.viewmodel.ext.android.viewModel
 import com.educatorapp.R
 import com.educatorapp.application.App.Companion.appContext
 import com.educatorapp.databinding.ActivityVideoPlayBinding
 import com.educatorapp.model.Video
+import com.educatorapp.ui.adapter.VideoCommentAdapter
 import com.educatorapp.ui.base.BaseActivity
-import com.educatorapp.ui.videoplayer.ComponentListener
 import com.educatorapp.utils.clients.VideoClient
+import com.educatorapp.utils.enums.State
+import com.educatorapp.utils.extensions.gone
 import com.educatorapp.utils.extensions.isAtLeastAndroid6
+import com.educatorapp.utils.extensions.recyclerDivider
+import com.educatorapp.utils.extensions.visible
+import com.educatorapp.utils.network.isNetworkAvailable
 import com.google.android.exoplayer2.DefaultLoadControl
 import com.google.android.exoplayer2.DefaultRenderersFactory
 import com.google.android.exoplayer2.ExoPlayerFactory
@@ -35,6 +40,7 @@ class VideoPlayActivity : BaseActivity<VideoPlayViewModel, ActivityVideoPlayBind
 
     // lazy inject MyViewModel
     override val mViewModel: VideoPlayViewModel by viewModel()
+    private lateinit var mAdapter: VideoCommentAdapter
 
     private var playerView: PlayerView? = null
     private lateinit var player: SimpleExoPlayer
@@ -67,9 +73,35 @@ class VideoPlayActivity : BaseActivity<VideoPlayViewModel, ActivityVideoPlayBind
 
         mViewModel.setVideoId(video.Id)
 
+        /** get video comment **/
+        mViewModel.getVideoComments(video.key)
+
+        mAdapter = VideoCommentAdapter()
+
+        mViewBinding.commentsList.apply {
+            addItemDecoration(recyclerDivider())
+            layoutManager = LinearLayoutManager(this@VideoPlayActivity)
+            setHasFixedSize(true)
+            adapter = mAdapter
+        }
+
+        setObservers()
+
+        /** button listeners **/
+        mViewBinding.backBtn.setOnClickListener(this)
+        mViewBinding.favoriteBtn.setOnClickListener(this)
+        mViewBinding.likeBtn.setOnClickListener(this)
+        mViewBinding.sendBtn.setOnClickListener(this)
+    }
+
+    private fun setObservers() {
+
+        mViewModel.videoComments.observe(this, Observer {
+            mAdapter.setComments(it)
+        })
+
         mViewModel.selectedVideo.observe(this, Observer {
             if (it == null) {
-                Log.e(TAG, "selectedVideo == null")
                 /** video not found **/
                 mViewBinding.likeBtn.isSelected = false
                 mViewBinding.favoriteBtn.isSelected = false
@@ -81,10 +113,43 @@ class VideoPlayActivity : BaseActivity<VideoPlayViewModel, ActivityVideoPlayBind
             }
         })
 
-        /** button listeners **/
-        mViewBinding.backBtn.setOnClickListener(this)
-        mViewBinding.favoriteBtn.setOnClickListener(this)
-        mViewBinding.likeBtn.setOnClickListener(this)
+        /** Set observer for a Status */
+        mViewModel.status.observe(this, Observer {
+            when (it) {
+                State.LOADING -> mViewBinding.progress.visible()
+                State.ERROR -> {
+                    showFragment(
+                        appContext.getString(R.string.api_call_retry_message),
+                        appContext.getString(R.string.api_call_retry_message_2)
+                    )
+                }
+                State.NOINTERNET -> {
+                    mViewBinding.progress.gone()
+                    showFragment(appContext.getString(R.string.no_internet_connection), "")
+                }
+                State.NODATA -> {
+                    mViewBinding.progress.gone()
+                    showFragment(appContext.getString(R.string.no_data_found_message_4), "")
+                }
+                State.DONE -> {
+                    mViewBinding.progress.gone()
+                }
+            }
+        })
+
+        mViewModel.isSubmitted.observe(this, Observer {
+            if (it) {
+                showProgress(false)
+                resetUI()
+                /** get video comment **/
+                mViewModel.getVideoComments(video.key)
+                mViewModel.resetSubmit()
+            }
+        })
+    }
+
+    fun resetUI() {
+        mViewBinding.editMessage.text.clear()
     }
 
     override fun onClick(v: View?) {
@@ -109,6 +174,29 @@ class VideoPlayActivity : BaseActivity<VideoPlayViewModel, ActivityVideoPlayBind
                     mViewBinding.favoriteBtn.isSelected = true
                     mViewModel.setVideoFavorite(video, true)
                 }
+            }
+            R.id.send_btn -> {
+                val comment = mViewBinding.editMessage.text.toString().trim()
+
+                if (comment.isNullOrEmpty()) {
+                    showToastMessage(getString(R.string.comment_hint))
+                    return
+                }
+
+                if (!isNetworkAvailable()) {
+                    showToastMessage(getString(R.string.no_internet_connection))
+                    return
+                }
+
+                showProgress(true)
+
+                mViewModel.submitComment(
+                    comment,
+                    video.key,
+                    video.Id,
+                    video.subjectId,
+                    video.educatorId
+                )
             }
         }
     }

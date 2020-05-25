@@ -6,13 +6,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.educatorapp.R
-import com.educatorapp.application.App
 import com.educatorapp.application.App.Companion.appContext
 import com.educatorapp.databinding.FragmentEducatorVideosBinding
 import com.educatorapp.model.Educator
 import com.educatorapp.ui.adapter.EducatorVideoListAdapter
 import com.educatorapp.ui.base.BaseFragment
-import com.educatorapp.ui.fragments.videoplayer.VideoPlayActivity
+import com.educatorapp.ui.videoplayer.VideoPlayActivity
 import com.educatorapp.utils.enums.State
 import com.educatorapp.utils.extensions.gone
 import com.educatorapp.utils.extensions.visible

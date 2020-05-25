@@ -4,7 +4,7 @@ import com.educatorapp.data.database.EducatorDatabase
 import com.educatorapp.data.preferences.PreferencesHelper
 import com.educatorapp.ui.fragments.contactus.ContactViewModel
 import com.educatorapp.ui.fragments.favorites.FavoriteViewModel
-import com.educatorapp.ui.fragments.videoplayer.VideoPlayViewModel
+import com.educatorapp.ui.videoplayer.VideoPlayViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -37,7 +37,7 @@ val viewModelModule = module {
     }
 
     viewModel {
-        VideoPlayViewModel(get())
+        VideoPlayViewModel(get(), get())
     }
 
     viewModel {

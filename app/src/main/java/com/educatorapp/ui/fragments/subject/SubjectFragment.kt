@@ -68,17 +68,17 @@ class SubjectFragment :
                 ERROR -> {
                     mViewBinding.progress.gone()
                     showFragment(
-                        appContext.getString(R.string.api_call_retry_message),
-                        appContext.getString(R.string.api_call_retry_message_2)
+                        getString(R.string.api_call_retry_message),
+                        getString(R.string.api_call_retry_message_2)
                     )
                 }
                 NODATA -> {
                     mViewBinding.progress.gone()
-                    showFragment(appContext.getString(R.string.no_data_found_message_3), "")
+                    showFragment(getString(R.string.no_data_found_message_3), "")
                 }
                 NOINTERNET -> {
                     mViewBinding.progress.gone()
-                    showFragment(appContext.getString(R.string.no_internet_connection), "")
+                    showFragment(getString(R.string.no_internet_connection), "")
                 }
                 DONE -> {
                     mViewBinding.progress.gone()

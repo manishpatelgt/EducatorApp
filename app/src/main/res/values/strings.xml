@@ -17,6 +17,8 @@
     <string name="no_data_found_message">Seems like no video found</string>
     <string name="no_data_found_message_2">Seems like no educators found</string>
     <string name="no_data_found_message_3">Seems like no subjects found</string>
+    <string name="no_data_found_message_4">Seems like no comments found</string>
+
     <string name="favorite_video_list_empty_message">Seems like your favorite video list is empty</string>
     <string name="retry">RETRY</string>
 
@@ -50,7 +52,7 @@
     <string name="login_screen_info">By clicking Login, you agree to the Terms &amp; Conditions and Privacy Policy of EducatorApp</string>
     <string name="welcome_info">Welcome to EducatorApp</string>
 
-    <string name="support_email">support@gmail.com</string>
+    <string name="support_email">mdp3030@gmail.com</string>
     <string name="support_call">1234567891</string>
 
     <string name="permission_title2">Permissions necessary</string>
@@ -62,4 +64,10 @@
     <string name="reach_us">Reach Us</string>
 
     <string name="rating_text">%s /5.0</string>
+    <string name="favorite_removed_message">Video removed from favorite list</string>
+
+    <string name="subject_required_message">Enter subject</string>
+    <string name="feedback_required_message">Enter message</string>
+    <string name="feedback_submitted_message">Your feedback submitted successfully. Thank you!</string>
+    <string name="comment_hint">Enter comment</string>
 </resources>

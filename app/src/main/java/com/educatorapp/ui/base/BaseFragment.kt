@@ -68,6 +68,26 @@ abstract class BaseFragment<VM : ViewModel, T : ViewDataBinding>(@LayoutRes val 
         }*/
     }
 
+    var progressDialog: ProgressDialogFragment? = null
+    fun showProgress(show: Boolean) {
+        if (show) {
+            if (progressDialog == null) {
+                progressDialog = ProgressDialogFragment.create()
+                progressDialog!!.show(
+                    childFragmentManager,
+                    DIALOG_PROGRESS
+                )
+            }
+        } else {
+            val progressDialogFragment =
+                childFragmentManager.findFragmentByTag(DIALOG_PROGRESS) as ProgressDialogFragment?
+            if (progressDialogFragment != null && progressDialogFragment.isVisible) {
+                progressDialog = null
+                progressDialogFragment.dismissAllowingStateLoss()
+            }
+        }
+    }
+
     fun showFragment(message_1: String, message_2: String) {
         val noDataFoundFragment =
             NoDataFoundFragment.create(
@@ -104,5 +124,6 @@ abstract class BaseFragment<VM : ViewModel, T : ViewDataBinding>(@LayoutRes val 
 
     companion object {
         val TAG = BaseFragment::class.java.simpleName
+        val DIALOG_PROGRESS = "DialogProgress"
     }
 }

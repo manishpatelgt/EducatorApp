@@ -50,7 +50,10 @@ class EducatorVideoViewModel : ViewModel() {
                         video?.let {
                             /** filter only based on subject id **/
                             if (it.subjectId == subjectId) {
-                                it.let { mVideos.add(it) }
+                                it.let {
+                                    it.key = snapshot.key.toString()
+                                    mVideos.add(it)
+                                }
                             }
                         }
 

@@ -12,6 +12,8 @@ import android.net.ConnectivityManager
 import android.net.Uri
 import android.telephony.TelephonyManager
 import android.view.inputmethod.InputMethodManager
+import androidx.recyclerview.widget.DividerItemDecoration
+import com.educatorapp.R
 
 fun Context.makePhoneCall(number: String) {
     try {
@@ -20,4 +22,9 @@ fun Context.makePhoneCall(number: String) {
     } catch (e: Exception) {
         e.printStackTrace()
     }
+}
+
+
+fun Context.recyclerDivider() = DividerItemDecoration(this, DividerItemDecoration.VERTICAL).apply {
+    drawable(R.drawable.list_divider_2)?.let { setDrawable(it) }
 }

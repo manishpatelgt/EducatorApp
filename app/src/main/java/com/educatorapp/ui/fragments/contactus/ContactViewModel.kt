@@ -1,5 +1,7 @@
 package com.educatorapp.ui.fragments.contactus
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.educatorapp.data.preferences.PreferencesHelper
@@ -17,7 +19,11 @@ import java.util.*
  */
 class ContactViewModel constructor(val preferencesHelper: PreferencesHelper) : ViewModel() {
 
+    private var mDatabase: DatabaseReference = Firebase.database.reference
     lateinit var mobileUser: MobileUser
+    var _isSubmitted = MutableLiveData<Boolean>()
+    val isSubmitted: LiveData<Boolean>
+        get() = _isSubmitted
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
@@ -27,13 +33,17 @@ class ContactViewModel constructor(val preferencesHelper: PreferencesHelper) : V
         }
     }
 
-    private var mDatabase: DatabaseReference = Firebase.database.reference
-
     fun saveFeedback(subject: String, message: String) {
         val Id = UUID.randomUUID().toString()
         val feedback = Feedback(Id, subject, message, mobileUser.userId, mobileUser.email)
         //Create Feedback
-        mDatabase.child("Feedbacks").child(Id).setValue(feedback).addOnCompleteListener {}
+        mDatabase.child("Feedbacks").child(Id).setValue(feedback).addOnCompleteListener {
+            _isSubmitted.value = true
+        }
+    }
+
+    fun resetSubmit() {
+        _isSubmitted.value = false
     }
 
 }

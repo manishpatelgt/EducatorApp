@@ -6,7 +6,7 @@ import com.educatorapp.utils.TimeHelper
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Video (
+data class Video(
     var Id: String = "",
     var title: String = "",
     var description: String = "",
@@ -16,6 +16,7 @@ data class Video (
     var totalLikes: Int = 0,
     var subjectId: String = "",
     var educatorId: String = "",
-    var rating : Float = 0.0F,
+    var rating: Float = 0.0F,
+    var key: String = "",
     var createdAt: String = TimeHelper.getCurrentTimeString()
-): Parcelable
+) : Parcelable

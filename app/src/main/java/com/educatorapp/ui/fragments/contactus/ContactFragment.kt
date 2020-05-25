@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.Observer
 import com.educatorapp.R
 import com.educatorapp.databinding.FragmentContactBinding
 import com.educatorapp.ui.base.BaseFragment
@@ -12,6 +13,7 @@ import com.educatorapp.ui.main.MainViewModel
 import com.educatorapp.utils.Utility
 import com.educatorapp.utils.extensions.isAtLeastAndroid6
 import com.educatorapp.utils.extensions.makePhoneCall
+import com.educatorapp.utils.network.isNetworkAvailable
 import com.livinglifetechway.quickpermissions_kotlin.runWithPermissions
 import com.livinglifetechway.quickpermissions_kotlin.util.QuickPermissionsOptions
 import org.koin.android.viewmodel.ext.android.sharedViewModel
@@ -33,6 +35,15 @@ class ContactFragment :
         mViewBinding.iconEmailSmall.setOnClickListener(this)
         mViewBinding.iconPhoneSmall.setOnClickListener(this)
         mViewBinding.submitBtn.setOnClickListener(this)
+
+        mViewModel.isSubmitted.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                showProgress(false)
+                sharedViewModel.setToastMessage(getString(R.string.feedback_submitted_message))
+                resetUI()
+                mViewModel.resetSubmit()
+            }
+        })
     }
 
     override fun onClick(v: View?) {
@@ -58,19 +69,24 @@ class ContactFragment :
                 val message = mViewBinding.editTextMessage.text.toString()
 
                 if (subject.isEmpty()) {
-                    sharedViewModel.setToastMessage("Enter subject")
+                    sharedViewModel.setToastMessage(getString(R.string.subject_required_message))
                     return
                 }
 
                 if (message.isEmpty()) {
-                    sharedViewModel.setToastMessage("Enter message")
+                    sharedViewModel.setToastMessage(getString(R.string.feedback_required_message))
                     return
                 }
 
+                if (!isNetworkAvailable()) {
+                    sharedViewModel.setToastMessage(getString(R.string.no_internet_connection))
+                    return
+                }
+
+                showProgress(true)
+
                 /** store value in firebase **/
                 mViewModel.saveFeedback(subject, message)
-                sharedViewModel.setToastMessage("Your feedback submitted successfully. Thank you!")
-                resetUI()
             }
         }
     }

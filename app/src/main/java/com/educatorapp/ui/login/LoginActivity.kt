@@ -179,10 +179,6 @@ class LoginActivity : BaseActivity<LoginModel, ActivityLoginBinding>() {
         }
     }
 
-    /** Show toast message */
-    fun showToastMessage(toastMessage: String) {
-        Toasty.info(this, toastMessage, Toast.LENGTH_LONG, false).show()
-    }
 
     private fun signIn() {
         val signInIntent = mGoogleSignInClient.signInIntent

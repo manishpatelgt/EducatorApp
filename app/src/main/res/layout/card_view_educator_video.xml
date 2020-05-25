@@ -20,10 +20,10 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dimen_10dp"
             app:cardCornerRadius="@dimen/dimen_5dp"
-            app:cardElevation="@dimen/dimen_5dp"
+            app:cardElevation="@dimen/dimen_2dp"
             app:cardPreventCornerOverlap="false"
             app:cardUseCompatPadding="true"
-            app:contentPadding="@dimen/dimen_5dp"
+            app:contentPadding="@dimen/dimen_0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/dimen_5dp">
+                android:padding="@dimen/dimen_0dp">
 
                 <!-- Educator video thumbnail Image -->
                 <androidx.appcompat.widget.AppCompatImageView
@@ -51,6 +51,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:layout_constraintLeft_toLeftOf="parent"
+                    android:padding="@dimen/dimen_10dp"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/thumbnail_logo">
 
@@ -60,50 +61,27 @@
                         style="?attr/textAppearanceHeadline3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/dimen_5dp"
+                        android:paddingLeft="0dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="@tools:sample/full_names" />
 
-                    <!-- Video like text -->
-                    <LinearLayout
-                        android:id="@+id/like_layout"
+                    <TextView
+                        android:id="@+id/like_text"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dimen_10dp"
-                        android:orientation="horizontal"
+                        android:layout_height="match_parent"
+                        android:drawablePadding="@dimen/dimen_5dp"
+                        android:drawableEnd="@drawable/ic_liked"
+                        android:textColor="@color/color_text_7"
+                        android:textSize="@dimen/dimen_20sp"
+                        android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <TextView
-                            android:id="@+id/like_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_margin="@dimen/dimen_5dp"
-                            android:layout_marginLeft="@dimen/dimen_5dp"
-                            android:gravity="center|center_horizontal"
-                            android:textColor="@color/color_text_7"
-                            android:textSize="@dimen/dimen_20sp"
-                            android:textStyle="bold"
-                            tools:text="13" />
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/like_img"
-                            android:layout_width="wrap_content"
-                            android:gravity="center|center_horizontal"
-                            android:layout_height="match_parent"
-                            android:adjustViewBounds="true"
-                            android:contentDescription="@string/text_educator_video_image"
-                            app:srcCompat="@drawable/ic_liked" />
-
-                    </LinearLayout>
-
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="13" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
