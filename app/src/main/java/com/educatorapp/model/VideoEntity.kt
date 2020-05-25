@@ -15,7 +15,8 @@ data class VideoEntity(
     var totalLikes: Int = 0,
     var subjectId: String = "",
     var educatorId: String = "",
-    var rating : Float = 0.0F,
-    var isLike : Boolean = false,
-    var isFavorite : Boolean = false
+    var rating: Float = 0.0F,
+    var isLike: Boolean = false,
+    var key: String = "",
+    var isFavorite: Boolean = false
 )

@@ -149,7 +149,7 @@ class VideoPlayActivity : BaseActivity<VideoPlayViewModel, ActivityVideoPlayBind
     }
 
     fun resetUI() {
-        mViewBinding.editMessage.text.clear()
+        mViewBinding.editComment.text.clear()
     }
 
     override fun onClick(v: View?) {
@@ -176,7 +176,7 @@ class VideoPlayActivity : BaseActivity<VideoPlayViewModel, ActivityVideoPlayBind
                 }
             }
             R.id.send_btn -> {
-                val comment = mViewBinding.editMessage.text.toString().trim()
+                val comment = mViewBinding.editComment.text.toString().trim()
 
                 if (comment.isNullOrEmpty()) {
                     showToastMessage(getString(R.string.comment_hint))

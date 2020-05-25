@@ -19,6 +19,7 @@ fun List<VideoEntity>.asDomainModel(): List<Video> {
             totalLikes = it.totalLikes,
             subjectId = it.subjectId,
             educatorId = it.educatorId,
+            key = it.key,
             rating = it.rating
         )
     }
@@ -36,6 +37,7 @@ fun Video.asDatabaseModel(isLike: Boolean) =
         subjectId = subjectId,
         educatorId = educatorId,
         rating = rating,
+        key = key,
         isLike = isLike
     )
 
@@ -52,5 +54,6 @@ fun Video.asDatabaseModel2(isFavorite: Boolean) =
         subjectId = subjectId,
         educatorId = educatorId,
         rating = rating,
+        key = key,
         isFavorite = isFavorite
     )
