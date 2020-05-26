@@ -22,6 +22,7 @@ ext {
     def firebase_storage_version = '19.1.1'
 
     def google_play_version = '18.0.0'
+    def oss_license_version = '17.0.0'
 
     def coroutines_core_version = '1.3.5'
     def coroutines_android_version = '1.3.5'
@@ -58,7 +59,8 @@ ext {
     ]
 
     googlePlayDependencies = [
-            google_play: "com.google.android.gms:play-services-auth:$google_play_version"
+            google_play: "com.google.android.gms:play-services-auth:$google_play_version",
+            oss_license: "com.google.android.gms:play-services-oss-licenses:$oss_license_version"
     ]
 
     firebaseDependencies = [

@@ -4,22 +4,22 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import org.koin.android.viewmodel.ext.android.viewModel
 import com.educatorapp.R
 import com.educatorapp.application.App.Companion.appContext
+import com.educatorapp.data.preferences.PreferencesHelper
 import com.educatorapp.databinding.ActivityVideoPlayBinding
 import com.educatorapp.model.Video
 import com.educatorapp.model.VideoComment
 import com.educatorapp.ui.adapter.VideoCommentAdapter
 import com.educatorapp.ui.base.BaseActivity
+import com.educatorapp.utils.TimeHelper
 import com.educatorapp.utils.clients.VideoClient
 import com.educatorapp.utils.enums.State
-import com.educatorapp.utils.extensions.gone
-import com.educatorapp.utils.extensions.isAtLeastAndroid6
-import com.educatorapp.utils.extensions.recyclerDivider
-import com.educatorapp.utils.extensions.visible
+import com.educatorapp.utils.extensions.*
 import com.educatorapp.utils.network.isNetworkAvailable
 import com.educatorapp.utils.states.CommentState
 import com.google.android.exoplayer2.DefaultLoadControl
@@ -33,6 +33,9 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
+import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
+
 
 class VideoPlayActivity : BaseActivity<VideoPlayViewModel, ActivityVideoPlayBinding>(),
     View.OnClickListener, VideoCommentAdapter.OnClickListener {
@@ -43,6 +46,8 @@ class VideoPlayActivity : BaseActivity<VideoPlayViewModel, ActivityVideoPlayBind
     // lazy inject MyViewModel
     override val mViewModel: VideoPlayViewModel by viewModel()
     private lateinit var mAdapter: VideoCommentAdapter
+
+    private val preferencesHelper: PreferencesHelper by inject() // Property Injection
 
     private var playerView: PlayerView? = null
     private lateinit var player: SimpleExoPlayer
@@ -75,10 +80,10 @@ class VideoPlayActivity : BaseActivity<VideoPlayViewModel, ActivityVideoPlayBind
 
         mViewModel.setVideoId(video.Id)
 
-        /** get video comment **/
-        mViewModel.getVideoComments(video.key)
+        mAdapter = VideoCommentAdapter(this, preferencesHelper.userId)
 
-        mAdapter = VideoCommentAdapter(this)
+        /** get video comments **/
+        mViewModel.getVideoComments(video.key)
 
         mViewBinding.commentsList.apply {
             addItemDecoration(recyclerDivider())
@@ -120,20 +125,25 @@ class VideoPlayActivity : BaseActivity<VideoPlayViewModel, ActivityVideoPlayBind
             when (it) {
                 State.LOADING -> mViewBinding.progress.visible()
                 State.ERROR -> {
+                    mViewBinding.fragmentContainerView.visible()
                     showFragment(
-                        appContext.getString(R.string.api_call_retry_message),
-                        appContext.getString(R.string.api_call_retry_message_2)
+                        getString(R.string.api_call_retry_message),
+                        getString(R.string.api_call_retry_message_2)
                     )
                 }
                 State.NOINTERNET -> {
+                    mViewBinding.fragmentContainerView.visible()
                     mViewBinding.progress.gone()
-                    showFragment(appContext.getString(R.string.no_internet_connection), "")
+                    showFragment(getString(R.string.no_internet_connection), "")
                 }
                 State.NODATA -> {
+                    mViewBinding.fragmentContainerView.visible()
                     mViewBinding.progress.gone()
-                    showFragment(appContext.getString(R.string.no_data_found_message_4), "")
+                    mAdapter.setComments(emptyList())
+                    showFragment(getString(R.string.no_data_found_message_4), "")
                 }
                 State.DONE -> {
+                    mViewBinding.fragmentContainerView.gone()
                     mViewBinding.progress.gone()
                 }
             }
@@ -265,14 +275,58 @@ class VideoPlayActivity : BaseActivity<VideoPlayViewModel, ActivityVideoPlayBind
         player.release()
     }
 
+    private fun buildMediaSource(uri: Uri): MediaSource =
+        ProgressiveMediaSource.Factory(DefaultHttpDataSourceFactory("exoplayer-codelab"))
+            .createMediaSource(uri)
+
+    override fun onClick(videoComment: VideoComment, commentState: CommentState) {
+        when (commentState) {
+            is CommentState.EditComment -> {
+                //Edit comment dialog
+                editVideoDialog(videoComment)
+            }
+            is CommentState.DeleteComment -> {
+                //Delete comment from firebase
+                mViewModel.deleteComment(videoComment, video.key)
+            }
+        }
+    }
+
+    fun editVideoDialog(videoComment: VideoComment) {
+        val view = inflate(R.layout.dialog_video_comment_layout, null)
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Edit Comment")
+        builder.setView(view)
+
+        val editText = view.findViewById<EditText>(R.id.edit_text_comment)
+        editText.setText(videoComment.comment)
+        builder.setPositiveButton("Done") { dialog, which ->
+            val comment = editText.text.toString().trim()
+
+            if (comment.isEmpty()) {
+                showToastMessage("Enter comment")
+                return@setPositiveButton
+            }
+
+            videoComment.comment = comment
+            videoComment.createdAt = TimeHelper.getCurrentTimeString()
+            mViewModel.editComment(videoComment, video.key)
+            dialog.dismiss()
+        }
+
+        builder.setNegativeButton("Dismiss") { dialog, which ->
+            dialog.dismiss()
+        }
+
+        val alertDialog: AlertDialog = builder.create()
+        alertDialog.setCancelable(false)
+        alertDialog.show()
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
     }
-
-    private fun buildMediaSource(uri: Uri): MediaSource =
-        ProgressiveMediaSource.Factory(DefaultHttpDataSourceFactory("exoplayer-codelab"))
-            .createMediaSource(uri)
 
     companion object {
         val TAG = VideoPlayActivity::class.simpleName
@@ -281,19 +335,6 @@ class VideoPlayActivity : BaseActivity<VideoPlayViewModel, ActivityVideoPlayBind
         fun getIntent(video: Video) = Intent(appContext, VideoPlayActivity::class.java).apply {
             putExtra(EXTRA, video)
         }
-    }
-
-    override fun onClick(videoComment: VideoComment, commentState: CommentState) {
-        when (commentState) {
-            is CommentState.EditComment -> {
-
-            }
-            is CommentState.DeleteComment -> {
-                //Delete comment from firebase
-                mViewModel.deleteComment(videoComment, video.key)
-            }
-        }
-
     }
 
 }

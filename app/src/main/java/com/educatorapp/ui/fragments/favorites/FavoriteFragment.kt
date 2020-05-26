@@ -13,11 +13,12 @@ import com.educatorapp.ui.base.BaseFragment
 import com.educatorapp.ui.videoplayer.VideoPlayActivity
 import com.educatorapp.ui.main.MainViewModel
 import com.educatorapp.utils.constants.Constants
+import com.educatorapp.utils.states.FavState
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class FavoriteFragment :
     BaseFragment<FavoriteViewModel, FragmentFavoriteBinding>(R.layout.fragment_favorite),
-    FavoriteVideoListAdapter.OnClickListener, FavoriteVideoListAdapter.OnFavoriteClickListener {
+    FavoriteVideoListAdapter.OnClickListener {
 
     // lazy inject MyViewModel
     override val mViewModel: FavoriteViewModel by viewModel()
@@ -32,7 +33,7 @@ class FavoriteFragment :
 
         /** Set observers*/
         setObservers()
-        mAdapter = FavoriteVideoListAdapter(this, this)
+        mAdapter = FavoriteVideoListAdapter(this)
 
         mViewBinding.favoriteVideoList.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -55,16 +56,20 @@ class FavoriteFragment :
         })
     }
 
-    override fun onClick(video: Video) {
-        /** Move to Educator Video Play fragment **/
-        requireActivity()?.let {
-            startActivity(VideoPlayActivity.getIntent(video))
+    override fun onClick(video: Video, favState: FavState) {
+        when (favState) {
+            is FavState.FavRemove -> {
+                mViewModel.removeVideoFavorite(video)
+                sharedViewModel.setToastMessage(getString(R.string.favorite_removed_message))
+            }
+            is FavState.FavClick -> {
+                /** Move to Educator Video Play fragment **/
+                requireActivity()?.let {
+                    startActivity(VideoPlayActivity.getIntent(video))
+                }
+            }
         }
-    }
 
-    override fun onFavClick(video: Video) {
-        mViewModel.removeVideoFavorite(video)
-        sharedViewModel.setToastMessage(getString(R.string.favorite_removed_message))
     }
 
 }

@@ -118,6 +118,9 @@ class VideoPlayViewModel constructor(
                         }
                     }
                     _videoComments.value = mVideoComments
+                    if (mVideoComments.isEmpty()) {
+                        _status.value = State.NODATA
+                    }
                 } else {
                     _status.value = State.NODATA
                 }
@@ -147,15 +150,24 @@ class VideoPlayViewModel constructor(
             comment = comment
         )
 
-        mDatabase.child("Videos").child(key).child("Comments").child(videoComment.Id).setValue(videoComment).addOnCompleteListener {
+        mDatabase.child("Videos").child(key).child("Comments").child(videoComment.Id)
+            .setValue(videoComment).addOnCompleteListener {
             _isSubmitted.value = true
         }
     }
 
-    fun deleteComment(videoComment: VideoComment,   key: String){
-        mDatabase.child("Videos").child(key).child("Comments").child(videoComment.Id).removeValue().addOnCompleteListener {
-            _isSubmitted.value = true
-        }
+    fun deleteComment(videoComment: VideoComment, key: String) {
+        mDatabase.child("Videos").child(key).child("Comments").child(videoComment.Id).removeValue()
+            .addOnCompleteListener {
+                _isSubmitted.value = true
+            }
+    }
+
+    fun editComment(videoComment: VideoComment, key: String) {
+        mDatabase.child("Videos").child(key).child("Comments").child(videoComment.Id).setValue(videoComment)
+            .addOnCompleteListener {
+                _isSubmitted.value = true
+            }
     }
 
     fun resetSubmit() {

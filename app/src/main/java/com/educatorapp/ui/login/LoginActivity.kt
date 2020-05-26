@@ -2,7 +2,6 @@ package com.educatorapp.ui.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.educatorapp.R
@@ -24,7 +23,6 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import es.dmoral.toasty.Toasty
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 import java.util.*
@@ -160,15 +158,19 @@ class LoginActivity : BaseActivity<LoginModel, ActivityLoginBinding>() {
 
             //Save data in Preferences
             preferencesHelper.mobileUser = mobileUser
+            preferencesHelper.userId = it.id
             updateUI(it)
         }
     }
 
     private fun updateUser(mobileUser: MobileUser?) {
         //Save data in Preferences
-        mobileUser?.userId = account!!.id
-        preferencesHelper.mobileUser = mobileUser
-        updateUI(account)
+        account?.let{
+            mobileUser?.userId = it.id
+            preferencesHelper.userId = it.id
+            preferencesHelper.mobileUser = mobileUser
+            updateUI(account)
+        }
     }
 
     private fun updateUI(account: GoogleSignInAccount?) {

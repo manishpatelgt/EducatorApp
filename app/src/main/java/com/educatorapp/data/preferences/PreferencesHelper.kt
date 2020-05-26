@@ -12,6 +12,7 @@ class PreferencesHelper(val context: Context) {
 
     private val PREF_KEY_IS_LOGIN = "Is_Login_Verify"  // Is_Login
     private val PREF_KEY_MOBILE_USER = "MobileUser"
+    private val PREF_KEY_USER_ID= "UserId"
 
     var preferences: SharedPreferences =
         context.getSharedPreferences("AppPreferences", Activity.MODE_PRIVATE)
@@ -62,6 +63,10 @@ class PreferencesHelper(val context: Context) {
     var mobileUser: MobileUser?
         get() = getObject(PREF_KEY_MOBILE_USER)
         set(mobileUser) = putString(PREF_KEY_MOBILE_USER, Klaxon().toJsonString(mobileUser))
+
+    var userId: String?
+        get() = getString(PREF_KEY_USER_ID)
+        set(userId) = putString(PREF_KEY_USER_ID, userId.toString())
 
     fun reset() {
         mobileUser = null

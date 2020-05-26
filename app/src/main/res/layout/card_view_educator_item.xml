@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dimen_10dp"
             app:cardCornerRadius="@dimen/dimen_5dp"
-            app:cardElevation="@dimen/dimen_2dp"
+            app:cardElevation="@dimen/dimen_3dp"
             app:cardPreventCornerOverlap="false"
             app:cardUseCompatPadding="true"
             app:contentPadding="@dimen/dimen_5dp"

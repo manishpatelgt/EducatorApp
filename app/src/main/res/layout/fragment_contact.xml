@@ -187,7 +187,7 @@
 
         <EditText
             android:id="@+id/edit_text_subject"
-            style="@style/DataEntrySubjectTextStyle"
+            style="@style/DataEntryTextStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:cursorVisible="true"
@@ -203,7 +203,7 @@
 
         <EditText
             android:id="@+id/edit_text_message"
-            style="@style/DataEntrySubjectTextStyle"
+            style="@style/DataEntryTextStyle"
             android:layout_height="wrap_content"
             android:cursorVisible="true"
             android:gravity="left"

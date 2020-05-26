@@ -10,13 +10,15 @@ import com.educatorapp.R
 import com.educatorapp.databinding.CardViewVideoCommentBinding
 import com.educatorapp.model.VideoComment
 import com.educatorapp.utils.TimeHelper
+import com.educatorapp.utils.extensions.gone
 import com.educatorapp.utils.extensions.loadUrl
+import com.educatorapp.utils.extensions.visible
 import com.educatorapp.utils.states.CommentState
 
 /**
  * Created by Manish Patel on 5/25/2020.
  */
-class VideoCommentAdapter(val onClickListener: OnClickListener) :
+class VideoCommentAdapter(val onClickListener: OnClickListener, val userId: String?) :
     ListAdapter<VideoComment, VideoCommentAdapter.VideoCommentViewHolder>(DIFF_CALLBACK) {
 
     private val comments: MutableList<VideoComment> = mutableListOf()
@@ -41,8 +43,15 @@ class VideoCommentAdapter(val onClickListener: OnClickListener) :
                 videoComment.createdAt?.let { TimeHelper.getStringToDate(it) }
             videoComment.photoUrl?.let { binding.userIcon.loadUrl(it) }
 
+            /** check for UserId **/
+            if (userId == videoComment.userId) {
+                binding.iconEdit.visible()
+            } else {
+                binding.iconEdit.gone()
+            }
+
             binding.iconEdit.setOnClickListener {
-                val popupMenu: PopupMenu = PopupMenu(binding.root.context, binding.iconEdit)
+                val popupMenu = PopupMenu(binding.root.context, binding.iconEdit)
                 popupMenu.menuInflater.inflate(R.menu.popup_menu, popupMenu.menu)
                 popupMenu.setOnMenuItemClickListener { item ->
                     when (item.itemId) {
@@ -67,6 +76,7 @@ class VideoCommentAdapter(val onClickListener: OnClickListener) :
     override fun getItemViewType(position: Int): Int {
         return position
     }
+
 
     override fun getItemCount() = comments.size
 

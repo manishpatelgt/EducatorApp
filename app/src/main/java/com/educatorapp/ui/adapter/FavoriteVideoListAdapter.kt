@@ -8,12 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.educatorapp.databinding.CardViewFavoriteVideoBinding
 import com.educatorapp.model.Video
 import com.educatorapp.utils.extensions.loadUrl
+import com.educatorapp.utils.states.FavState
 
-class FavoriteVideoListAdapter(
-    val onClickListener: OnClickListener,
-    val onFavoriteClickListener: OnFavoriteClickListener
-) :
-    ListAdapter<Video, FavoriteVideoListAdapter.FavoriteVideoViewHolder>(DIFF_CALLBACK) {
+class FavoriteVideoListAdapter(val onClickListener: OnClickListener) : ListAdapter<Video, FavoriteVideoViewHolder>(DIFF_CALLBACK) {
 
     private val mVideos: MutableList<Video> = mutableListOf()
 
@@ -33,7 +30,7 @@ class FavoriteVideoListAdapter(
         )
     }
 
-    inner class FavoriteVideoViewHolder(private val binding: CardViewFavoriteVideoBinding) :
+    /*inner class FavoriteVideoViewHolder(private val binding: CardViewFavoriteVideoBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(video: Video) {
@@ -48,17 +45,13 @@ class FavoriteVideoListAdapter(
                 onClickListener.onClick(video)
             }
         }
-    }
+    }*/
 
     override fun onBindViewHolder(holder: FavoriteVideoViewHolder, position: Int) =
-        holder.bind(mVideos[position])
+        holder.bind(mVideos[position], onClickListener)
 
     interface OnClickListener {
-        fun onClick(video: Video)
-    }
-
-    interface OnFavoriteClickListener {
-        fun onFavClick(video: Video)
+        fun onClick(video: Video, favState: FavState)
     }
 
     fun setVideos(videoList: List<Video>) {

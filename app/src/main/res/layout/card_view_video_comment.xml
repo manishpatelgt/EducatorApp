@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardPreventCornerOverlap="false"
-        app:contentPadding="@dimen/dimen_10dp"
+        app:contentPadding="@dimen/dimen_8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
