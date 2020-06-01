@@ -15,9 +15,6 @@ import com.educatorapp.utils.extensions.loadUrl
 import com.educatorapp.utils.extensions.visible
 import com.educatorapp.utils.states.CommentState
 
-/**
- * Created by Manish Patel on 5/25/2020.
- */
 class VideoCommentAdapter(val onClickListener: OnClickListener, val userId: String?) :
     ListAdapter<VideoComment, VideoCommentAdapter.VideoCommentViewHolder>(DIFF_CALLBACK) {
 

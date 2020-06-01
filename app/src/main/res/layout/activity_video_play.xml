@@ -39,6 +39,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dimen_10dp"
+        android:padding="@dimen/dimen_5dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/top_layout">
@@ -104,18 +105,19 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View
-            android:id="@+id/separator_1"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_01dp"
-            android:layout_margin="@dimen/dimen_5dp"
-            android:background="@color/separator_color"
-            app:layout_constraintBottom_toTopOf="@+id/cl_center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/first_layout" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/separator_1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_01dp"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:layout_marginBottom="@dimen/dimen_5dp"
+        android:background="@color/separator_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/comments_list"
+        app:layout_constraintTop_toBottomOf="@+id/middle_layout" />
 
     <!-- progress -->
     <ProgressBar
@@ -150,6 +152,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:scrollbars="none"
+        android:paddingTop="@dimen/dimen_10dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@+id/middle_layout"
         app:layout_constraintBottom_toTopOf="@+id/ll_bottom"

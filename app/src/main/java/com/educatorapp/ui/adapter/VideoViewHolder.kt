@@ -5,9 +5,6 @@ import com.educatorapp.databinding.CardViewEducatorVideoBinding
 import com.educatorapp.model.Video
 import com.educatorapp.utils.extensions.loadUrl
 
-/**
- * Created by Manish Patel on 5/22/2020.
- */
 class VideoViewHolder(val binding: CardViewEducatorVideoBinding) :
     RecyclerView.ViewHolder(binding.root) {
 

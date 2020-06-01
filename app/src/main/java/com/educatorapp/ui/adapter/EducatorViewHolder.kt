@@ -5,9 +5,6 @@ import com.educatorapp.databinding.CardViewEducatorItemBinding
 import com.educatorapp.model.Educator
 import com.educatorapp.utils.extensions.loadUrl
 
-/**
- * Created by Manish Patel on 5/22/2020.
- */
 class EducatorViewHolder(val binding: CardViewEducatorItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 

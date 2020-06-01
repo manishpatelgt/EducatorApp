@@ -25,6 +25,9 @@ fun Context.makePhoneCall(number: String) {
 }
 
 
+inline val Context.connectivityManager: ConnectivityManager?
+    get() = getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
+
 fun Context.recyclerDivider() = DividerItemDecoration(this, DividerItemDecoration.VERTICAL).apply {
     drawable(R.drawable.list_divider_2)?.let { setDrawable(it) }
 }

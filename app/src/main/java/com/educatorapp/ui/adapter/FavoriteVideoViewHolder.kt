@@ -9,9 +9,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-/**
- * Created by Manish Patel on 5/23/2020.
- */
 class FavoriteVideoViewHolder(private val binding: CardViewFavoriteVideoBinding) :
     RecyclerView.ViewHolder(binding.root) {
 

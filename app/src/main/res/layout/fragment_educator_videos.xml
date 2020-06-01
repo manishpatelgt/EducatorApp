@@ -31,13 +31,14 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/educator_video_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:scrollbars="none"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:spanCount="5"
+            android:paddingBottom="@dimen/dimen_5dp"
             android:layout_margin="@dimen/dimen_5dp"
             tools:listitem="@layout/card_view_educator_video" />
 
