@@ -4,7 +4,7 @@
 This Android App developed using Kotlin as primary language. App is useful for student who can easily search videos based subject and his/her favorite educator and watch it.
 Also, anyone can comment, like and rate educator video.
 
-I have used Firebase database and firebase storage for videos, icons and other resources. I don't use my own server here.
+I have used Firebase database and firebase storage for videos, icons and other resources. I haven't use my own server here.
 
 # Features
 
