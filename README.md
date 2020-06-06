@@ -64,6 +64,18 @@ I have used Firebase database and firebase storage for videos, icons and other r
       8) MaterialDialog (by shreyaspatil)
       9) Circleimageview
 
+<h2>Snapshot</h2>
+<div style={display:flex}>
+<img src="https://github.com/manishpatelgt/EducatorApp/blob/master/screens/Login.png" height="400px" width="200px">
+<img src="https://github.com/manishpatelgt/EducatorApp/blob/master/screens/Subjects.png" height="400px" width="200px">
+<img src="https://github.com/manishpatelgt/EducatorApp/blob/master/screens/Educators.png" height="400px" width="200px">
+<img src="https://github.com/manishpatelgt/EducatorApp/blob/master/screens/Educator_videos.png" height="400px" width="200px">
+<img src="https://github.com/manishpatelgt/EducatorApp/blob/master/screens/Video_player_2.png" height="400px" width="200px">
+<img src="https://github.com/manishpatelgt/EducatorApp/blob/master/screens/Favorites_videos.png" height="400px" width="200px">
+<img src="https://github.com/manishpatelgt/EducatorApp/blob/master/screens/Profile.jpeg" height="400px" width="200px">
+<img src="https://github.com/manishpatelgt/EducatorApp/blob/master/screens/Contact_us.png" height="400px" width="200px">
+</div>
+
 # Contact
 
 Twitter : [Mdp3030](https://twitter.com/mdp3030)
