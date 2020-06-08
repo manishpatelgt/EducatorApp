@@ -8,7 +8,7 @@ I have used Firebase database and firebase storage for videos, icons and other r
 
 ***You can Install the Sample app by clicking below***
 
-[![Online Educator Android App](https://img.shields.io/badge/OnlineEducatorApp-APK-blue)](https://github.com/manishpatelgt/EducatorApp/blob/master/apk/EducatorApp_v1.0.0_sample.apk)
+[![Online Educator Android App](https://img.shields.io/badge/OnlineEducatorApp-APK-blue)](https://github.com/manishpatelgt/EducatorApp/raw/master/apk/EducatorApp_v1.0.0_sample.apk)
 
 # Features
 
