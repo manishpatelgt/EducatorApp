@@ -48,6 +48,7 @@
             android:id="@+id/first_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
             android:layout_margin="@dimen/dimen_10dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent">
