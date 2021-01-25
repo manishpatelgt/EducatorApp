@@ -108,7 +108,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
+    <!--<View
         android:id="@+id/separator_1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_01dp"
@@ -118,7 +118,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/comments_list"
-        app:layout_constraintTop_toBottomOf="@+id/middle_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/middle_layout" /> -->
 
     <!-- progress -->
     <ProgressBar
